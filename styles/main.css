@@ -1,9 +1,12 @@
 /* Custom styles on top of LaTeX.css */
 :root {
-    --text-color: #000000;        /* Pure black */
-    --bg-color: #FFFFFF;          /* Pure white */
-    --border-color: #CCCCCC;
-    --hover-color: #666666;
+    /* Light theme */
+    --text-color: #000000;          /* Primary label color */
+    --bg-color: #FFFFFF;            /* System background */
+    --border-color: #3C3C4399;      /* Separator color with 0.6 opacity */
+    --hover-color: #007AFF;         /* iOS system blue */
+    --secondary-text: #3C3C4399;    /* Secondary label color */
+    --tertiary-text: #3C3C434D;     /* Tertiary label color */
     --line-height: 1.6;
     --paragraph-indent: 1.5em;
 }
@@ -63,7 +66,7 @@ body {
 }
 
 /* Typography */
-h1 {
+.header-container h1 {
     text-align: center;
     font-size: 2.5rem;
     margin: 2rem 0 0.5rem;
@@ -81,22 +84,26 @@ h1 {
 .nav-links {
     margin: 2rem 0;
     padding: 1rem 0;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
+    border-top: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-color);
     text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 2rem;
 }
 
 .nav-links a {
-    margin: 0 2rem;  /* Increased spacing between items */
+    margin: 0;
     text-decoration: none;
     color: var(--text-color);
-    font-variant: small-caps;  /* Small caps for menu items */
-    font-size: 1.1rem;  /* Slightly larger font */
-    transition: color 0.2s;
+    font-variant: small-caps;
+    font-size: 1.1rem;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
-    color: var(--hover-color);
+    color: var(--text-color);
 }
 
 /* Global section header styling - consistent with publications */
@@ -168,12 +175,14 @@ ul li:before {
     position: relative;
 }
 
-/* Dark mode - exact opposite colors */
+/* Dark theme colors */
 .latex-dark {
-    --text-color: #FFFFFF;        /* Pure white */
-    --bg-color: #000000;          /* Pure black */
-    --border-color: #333333;      /* Opposite of #CCCCCC */
-    --hover-color: #999999;       /* Opposite of #666666 */
+    --text-color: #FFFFFF;          /* Primary label color */
+    --bg-color: #000000;            /* System background */
+    --border-color: #54545899;      /* Separator color with 0.6 opacity */
+    --hover-color: #0A84FF;         /* iOS system blue */
+    --secondary-text: #EBEBF599;    /* Secondary label color */
+    --tertiary-text: #EBEBF54D;     /* Tertiary label color */
     background-color: var(--bg-color);
     color: var(--text-color);
     -webkit-font-smoothing: antialiased;
@@ -182,7 +191,7 @@ ul li:before {
 
 /* Improve contrast for dark mode elements */
 .latex-dark .nav-links {
-    border-color: #111111;
+    border-color: var(--text-color);
 }
 
 /* Remove any colored backgrounds in dark mode */
@@ -210,7 +219,7 @@ ul li:before {
 }
 
 .latex-dark a:hover {
-    color: var(--hover-color);
+    color: var(--text-color);
     text-decoration: underline;
 }
 
@@ -222,8 +231,12 @@ ul li:before {
         hyphens: none;
     }
 
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
     .nav-links a {
-        display: block;
         margin: 0.5rem 0;
     }
 }
@@ -670,7 +683,7 @@ ul li:before {
 }
 
 .download-button:hover {
-    color: var(--hover-color);
+    color: var(--text-color);
 }
 
 .download-button svg {
@@ -915,4 +928,63 @@ ul li:before {
 /* Single rule to control spacing between sections */
 .cv-section + .cv-section {
     margin-top: 1.0rem !important;  /* Using !important to override any conflicts */
+}
+
+/* Update link colors to match text color */
+a, 
+.publications-list a,
+.project-item a,
+.contact-info a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+a:hover, 
+.publications-list a:hover,
+.project-item a:hover,
+.contact-info a:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+/* Dark mode links */
+.latex-dark a,
+.latex-dark .publications-list a,
+.latex-dark .project-item a,
+.latex-dark .contact-info a {
+    color: var(--text-color);  /* White in dark mode */
+}
+
+.latex-dark a:hover,
+.latex-dark .publications-list a:hover,
+.latex-dark .project-item a:hover,
+.latex-dark .contact-info a:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+/* Update download button colors to match text color */
+.download-button {
+    color: var(--text-color);
+}
+
+.download-button svg {
+    stroke: var(--text-color);
+}
+
+.download-button:hover {
+    color: var(--text-color);
+}
+
+/* Dark mode download buttons */
+.latex-dark .download-button {
+    color: var(--text-color);
+}
+
+.latex-dark .download-button svg {
+    stroke: var(--text-color);
+}
+
+.latex-dark .download-button:hover {
+    color: var(--text-color);
 } 
