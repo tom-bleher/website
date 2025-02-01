@@ -1,0 +1,117 @@
+\documentclass[letterpaper,11pt]{article}
+
+% Packages imports for Hebrew support
+\usepackage{amsthm}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{etexcmds}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{lmodern}
+\usepackage{bookmark}
+\usepackage{varwidth}
+\usepackage{tikz, pgfplots}
+\usepackage[skins, most]{tcolorbox}
+\usepackage{xparse}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{svg}
+\usepackage{titlesec}
+\usepackage{bidi}
+
+% Hebrew language setup
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\setmainfont{Times New Roman}
+\newfontfamily\hebrewfont[Script=Hebrew]{David CLM}
+\newfontfamily\englishfont{Times New Roman}
+
+% Define colors
+\definecolor{darkgray}{RGB}{50, 50, 50}
+\definecolor{linkblue}{RGB}{0, 112, 192}
+
+% Add margin adjustments to match CV
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.0in}
+
+% Update header settings
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Add section formatting
+\titleformat{\section}{
+  \vspace{-10pt}\scshape\raggedleft\large\hebrewfont
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Remove both current date commands and replace with this
+\makeatletter
+\newcommand{\englishmonthinhebrew}[1]{%
+  \ifcase#1\or
+    ינואר\or פברואר\or מרץ\or
+    אפריל\or מאי\or יוני\or
+    יולי\or אוגוסט\or ספטמבר\or
+    אוקטובר\or נובמבר\or דצמבר\fi}
+\makeatother
+
+\begin{document}
+\begin{hebrew}
+
+\vspace*{0cm}
+\noindent
+\begin{tabular*}{\textwidth}{@{}r@{\extracolsep{\fill}}l@{}}
+\begin{tabular}[t]{r}
+ישראל ישראלי\\
+תל אביב 6416201, רחוב אבן גבירול 69\\
+\textenglish{\href{mailto:israeli@gmail.com}{israeli@gmail.com}}\\
+\textenglish{+972-000-00-000}\\[7pt]
+שם החברה/ נמען\\
+תל אביב 6997801, רחוב חיים לבנון 55 
+\end{tabular} &
+\begin{tabular}[t]{l}
+31 ב\englishmonthinhebrew{1} 2025
+\end{tabular}
+\end{tabular*}
+\vspace{1cm}
+
+\section{מכתב בלאטך}
+
+% Main body with adjusted paragraph spacing
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית גולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.
+
+לורם איפסום דולור סיט אמט, נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן קוואזי במר מודוף. אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם.
+
+וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי סחטיר בלובק. תצטנפל בלינדו למרקל אס לכימפו, דול, צוט ומעיוט - לפתיעם ברשג - ולתיעם גדדיש. קוויז דומור ליאמום בלינך רוגצה. לפמעט
+
+קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.
+
+קולורס מונפרד אדנדום סילקוף, מרגשי ומרגשח. עמחליף נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן קוואזי במר מודוף. אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף לפרומי בלוף קינץ תתיח לרעח. לת צשחמי נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן קוואזי במר מודוף. אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף סחטיר בלובק.
+
+% חתימה
+\vspace{20pt}
+\begin{flushright}
+בברכה,
+\par\vspace{5pt}
+\includesvg[width=0.15\textwidth]{signature.svg}
+\end{flushright}
+\begin{flushright}
+\vspace{-14mm}
+\rule{0.25\textwidth}{0.5pt}
+\par\vspace{5pt}
+ישראל ישראלי
+\end{flushright}
+\end{hebrew}
+
+\end{document}
