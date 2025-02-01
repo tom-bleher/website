@@ -153,19 +153,28 @@ h2 {
 /* Lists */
 ul {
     list-style-type: none;
-    padding-left: calc(var(--paragraph-indent) * 2);
+    padding-left: 1.5em;
+    margin: 0.3rem 0;
 }
 
 ul li {
-    margin-bottom: 0.8rem;
     position: relative;
+    margin-bottom: 0.15rem;  /* Reduced from previous values */
 }
 
-ul li:before {
+/* Global bullet point alignment */
+ul li::before {
     content: "•";
     position: absolute;
-    left: -1.5em;
+    left: -1.2em;
+    font-size: 1.4em;
+    line-height: 0.85;  /* Adjusted to 0.85 for better vertical centering */
     color: var(--text-color);
+}
+
+/* Nested lists - adjust spacing */
+ul ul {
+    margin: 0.15rem 0 0.15rem 0.5em;  /* Reduced vertical margins */
 }
 
 /* Publications */
@@ -583,42 +592,45 @@ ul li:before {
 }
 
 .item-header {
-    position: relative;
-    margin-bottom: 0.1rem;  /* Distance from "Tel Aviv University" to "Research Assistant" */
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 0.1rem;  /* Reduced from 0.5rem - this controls space between institution and role */
 }
 
 .item-title {
     flex: 1;
+    min-width: 200px;
+    margin: 0;
 }
 
 .item-title h3 {
     margin: 0;
-    font-weight: bold;
-    font-size: 0.95rem;
-    padding-right: 200px;  /* Make space for location/date */
 }
 
 .location {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-style: italic;
-    margin: 0;
     text-align: right;
-    min-width: 150px;
+    min-width: 120px;
 }
 
 .item-date {
-    position: absolute;
-    top: 1.2em;  /* Reduced from 1.5em */
-    right: 0;
+    min-width: 120px;
     text-align: right;
-    min-width: 150px;
+}
+
+.role-date-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 0 0 0.3rem 0;  /* Increased bottom margin to 0.3rem - this controls space between role and bullet point */
+    width: 100%;
 }
 
 .role {
     font-style: italic;
-    margin: 0.1rem 0;
+    margin: 0;
 }
 
 .awards-list {
@@ -627,7 +639,12 @@ ul li:before {
 }
 
 .awards-list li {
-    margin-bottom: 0.1rem;  /* Reduced from 0.2rem */
+    margin-bottom: 0.15rem;  /* Reduced spacing */
+}
+
+.awards-list li::before {
+    font-size: 1.4em;
+    line-height: 0.85;  /* Adjusted to 0.85 */
 }
 
 .skills-grid {
@@ -822,7 +839,7 @@ ul li:before {
 
 /* Adjust awards list spacing */
 .awards-list li {
-    margin-bottom: 0.1rem;  /* Reduced from 0.2rem */
+    margin-bottom: 0.15rem;  /* Reduced spacing */
 }
 
 /* Adjust skills section spacing */
@@ -853,17 +870,13 @@ ul li:before {
     margin-top: 0.1rem;
 }
 
-/* Experience bullet points */
-.experience-details {
-    position: relative;
-    padding-left: 1em;  /* Slightly reduced from 1.2em */
-    margin: 0.08rem 0;
-}
-
+/* Experience details bullets alignment */
 .experience-details::before {
     content: "•";
     position: absolute;
     left: 0;
+    font-size: 1.4em;
+    line-height: 0.85;  /* Adjusted to 0.85 */
     color: var(--text-color);
 }
 
@@ -930,37 +943,65 @@ ul li:before {
     margin-top: 1.0rem !important;  /* Using !important to override any conflicts */
 }
 
-/* Update link colors to match text color */
-a, 
+/* Global link styles - remove any existing link styles first */
+a,
+.nav-links a,
 .publications-list a,
 .project-item a,
-.contact-info a {
+.contact-info a,
+.cv-page a,
+.resources-list a,
+.hobbies-content a {
     color: var(--text-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;  /* Prepare for hover effect */
+    transition: border-color 0.2s ease;
+}
+
+/* Unified hover effect for all links */
+a:hover,
+.nav-links a:hover,
+.publications-list a:hover,
+.project-item a:hover,
+.contact-info a:hover,
+.cv-page a:hover,
+.resources-list a:hover,
+.hobbies-content a:hover {
+    color: var(--text-color);
+    border-bottom: 1px solid var(--text-color);
     text-decoration: none;
 }
 
-a:hover, 
-.publications-list a:hover,
-.project-item a:hover,
-.contact-info a:hover {
-    color: var(--text-color);
-    text-decoration: underline;
-}
-
-/* Dark mode links */
+/* Dark mode links - maintain consistency */
 .latex-dark a,
+.latex-dark .nav-links a,
 .latex-dark .publications-list a,
 .latex-dark .project-item a,
-.latex-dark .contact-info a {
-    color: var(--text-color);  /* White in dark mode */
+.latex-dark .contact-info a,
+.latex-dark .cv-page a,
+.latex-dark .resources-list a,
+.latex-dark .hobbies-content a {
+    color: var(--text-color);
 }
 
 .latex-dark a:hover,
+.latex-dark .nav-links a:hover,
 .latex-dark .publications-list a:hover,
 .latex-dark .project-item a:hover,
-.latex-dark .contact-info a:hover {
-    color: var(--text-color);
-    text-decoration: underline;
+.latex-dark .contact-info a:hover,
+.latex-dark .cv-page a:hover,
+.latex-dark .resources-list a:hover,
+.latex-dark .hobbies-content a:hover {
+    border-bottom-color: var(--text-color);
+}
+
+/* Exception for navigation links - they should not have underline until hover */
+.nav-links a {
+    border-bottom: none;
+}
+
+.nav-links a:hover {
+    border-bottom: 1px solid var(--text-color);
 }
 
 /* Update download button colors to match text color */
@@ -987,4 +1028,55 @@ a:hover,
 
 .latex-dark .download-button:hover {
     color: var(--text-color);
-} 
+}
+
+/* Remove the item-date from item-header if it exists there */
+.item-header .item-date {
+    display: none;
+}
+
+/* Add spacing between consecutive bullet points within same role */
+.experience-details + .experience-details {
+    margin-top: 0.15rem;  /* Reduced from previous values */
+}
+
+/* Keep existing experience-details styling */
+.experience-details {
+    position: relative;
+    padding-left: 1.2em;
+    margin: 0.15rem 0;  /* Reduced from previous values */
+}
+
+/* Awards list bullets alignment */
+.awards-list li::before {
+    font-size: 1.4em;
+    line-height: 0.85;  /* Adjusted to 0.85 */
+}
+
+/* Resources list bullets alignment */
+.resources-list li::before {
+    font-size: 1.4em;
+    line-height: 0.85;  /* Adjusted to 0.85 */
+}
+
+/* CV page bullet points */
+.cv-list li::before,
+.awards-list li::before,
+.experience-details::before,
+.cv-page ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    font-size: 1.4em;
+    line-height: 0.55;  /* Changed from 0.65 to 0.6 for CV page */
+    color: var(--text-color);
+}
+
+/* Keep existing bullet point styles but ensure CV page consistency */
+.cv-page .experience-details::before {
+    line-height: 0.55;  /* Changed from 0.65 to 0.6 */
+}
+
+.cv-page .awards-list li::before {
+    line-height: 0.55;  /* Changed from 0.65 to 0.6 */
+}
