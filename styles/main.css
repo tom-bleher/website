@@ -277,7 +277,7 @@ ul ul {
 
 .pdf-button:hover {
     background-color: var(--text-color);
-    color: var(--bg-color);
+    color: var(--bg-color) !important;
 }
 
 /* CV Sections */
@@ -943,65 +943,33 @@ ul ul {
     margin-top: 1.0rem !important;  /* Using !important to override any conflicts */
 }
 
-/* Global link styles - remove any existing link styles first */
-a,
-.nav-links a,
-.publications-list a,
-.project-item a,
-.contact-info a,
-.cv-page a,
-.resources-list a,
-.hobbies-content a {
-    color: var(--text-color);
+/* Global link styles - this will apply to all links */
+a {
+    color: var(--text-color) !important; /* Force black in light mode, white in dark mode */
     text-decoration: none;
-    border-bottom: 1px solid transparent;  /* Prepare for hover effect */
-    transition: border-color 0.2s ease;
+    transition: text-decoration 0.3s ease;
 }
 
-/* Unified hover effect for all links */
-a:hover,
-.nav-links a:hover,
-.publications-list a:hover,
-.project-item a:hover,
-.contact-info a:hover,
-.cv-page a:hover,
-.resources-list a:hover,
-.hobbies-content a:hover {
-    color: var(--text-color);
-    border-bottom: 1px solid var(--text-color);
-    text-decoration: none;
+a:hover {
+    color: var(--text-color) !important;
+    text-decoration: underline;
 }
 
-/* Dark mode links - maintain consistency */
-.latex-dark a,
-.latex-dark .nav-links a,
-.latex-dark .publications-list a,
-.latex-dark .project-item a,
-.latex-dark .contact-info a,
-.latex-dark .cv-page a,
-.latex-dark .resources-list a,
-.latex-dark .hobbies-content a {
-    color: var(--text-color);
-}
-
-.latex-dark a:hover,
-.latex-dark .nav-links a:hover,
-.latex-dark .publications-list a:hover,
-.latex-dark .project-item a:hover,
-.latex-dark .contact-info a:hover,
-.latex-dark .cv-page a:hover,
-.latex-dark .resources-list a:hover,
-.latex-dark .hobbies-content a:hover {
-    border-bottom-color: var(--text-color);
-}
-
-/* Exception for navigation links - they should not have underline until hover */
+/* Navigation links - only keep the specific styling needed */
 .nav-links a {
-    border-bottom: none;
+    font-variant: small-caps;
+    font-size: 1.1rem;
+    white-space: nowrap;
 }
 
-.nav-links a:hover {
-    border-bottom: 1px solid var(--text-color);
+/* Remove any other link color definitions */
+.latex-dark a {
+    color: var(--text-color) !important;
+}
+
+.latex-dark a:hover {
+    color: var(--text-color) !important;
+    text-decoration: underline;
 }
 
 /* Update download button colors to match text color */
