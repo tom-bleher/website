@@ -9,27 +9,86 @@
     --tertiary-text: #3C3C434D;     /* Tertiary label color */
     --line-height: 1.6;
     --paragraph-indent: 1.5em;
-    --transition-duration: 0.3s;
+    --transition-duration: 0.2s;     /* Slightly faster transition */
+    --transition-timing: cubic-bezier(0.16, 1, 0.3, 1); /* Custom easing for smoother feel */
 }
 
-/* Apply transitions to all elements */
-* {
-    transition: background-color var(--transition-duration) ease,
-                color var(--transition-duration) ease,
-                border-color var(--transition-duration) ease,
-                box-shadow var(--transition-duration) ease;
+/* Set transition on html to propagate to all children */
+html {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    transition: all var(--transition-duration) var(--transition-timing);
 }
 
+/* Ensure body fills viewport */
 body {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    min-height: 100vh;
     line-height: var(--line-height);
     text-align: justify;
     hyphens: auto;
     counter-reset: section;
+    background-color: var(--bg-color);
+}
+
+/* Apply transitions to all elements */
+*, *::before, *::after {
+    transition: all var(--transition-duration) var(--transition-timing);
+}
+
+/* Force immediate background color application */
+main, 
+.page-content, 
+section, 
+.cv-page, 
+.pdf-page, 
+.project-item, 
+.publications-list, 
+.abstract, 
+.theorem, 
+.definition,
+.header-container,
+.nav-links,
+.cv-section,
+.skill-line,
+.download-button,
+.item-header {
+    background-color: var(--bg-color);
+}
+
+/* Dark theme colors - apply to html for global inheritance */
+html.latex-dark {
+    --text-color: #FFFFFF;
+    --bg-color: #000000;
+    --border-color: #54545899;
+    --hover-color: #0A84FF;
+    --secondary-text: #EBEBF599;
+    --tertiary-text: #EBEBF54D;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+/* Remove any conflicting transitions */
+.sun-icon,
+.moon-icon {
+    transition: none;
+}
+
+/* Ensure all text elements inherit color */
+h1, h2, h3, h4, h5, h6,
+p, span, a, li, 
+.nav-links a,
+.download-button,
+.role,
+.location,
+.item-date,
+.experience-details,
+.skill-label,
+.skill-content {
+    color: inherit;
 }
 
 /* Header and navigation container */
