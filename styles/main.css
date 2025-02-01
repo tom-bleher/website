@@ -9,6 +9,15 @@
     --tertiary-text: #3C3C434D;     /* Tertiary label color */
     --line-height: 1.6;
     --paragraph-indent: 1.5em;
+    --transition-duration: 0.3s;
+}
+
+/* Apply transitions to all elements */
+* {
+    transition: background-color var(--transition-duration) ease,
+                color var(--transition-duration) ease,
+                border-color var(--transition-duration) ease,
+                box-shadow var(--transition-duration) ease;
 }
 
 body {
@@ -21,7 +30,6 @@ body {
     text-align: justify;
     hyphens: auto;
     counter-reset: section;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Header and navigation container */
@@ -359,6 +367,7 @@ ul ul {
     max-width: 100%;
     margin: 0 auto;
     margin-top: 0;
+    background-color: var(--bg-color);
 }
 
 /* CV Header */
