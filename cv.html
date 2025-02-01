@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Tom Bleher</title>
+    <link rel="stylesheet" href="https://latex.vercel.app/style.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <main>
+        <div class="header-container">
+            <h1>Curriculum Vitae</h1>
+            <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="publications.html">Publications</a>
+            <a href="projects.html">Projects</a>
+            <a href="cv.html">CV</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="cv-page">
+            <div class="download-buttons">
+                <button class="download-button" onclick="window.location.href='bleher_cv.pdf'" aria-label="Download PDF">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                </button>
+                <button class="download-button" onclick="window.location.href='bleher_cv.tex'" aria-label="Download LaTeX">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <line x1="10" y1="9" x2="8" y2="9"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Research Experience -->
+            <section class="cv-section">
+                <h2>Research Experience</h2>
+                <div class="item-header">
+                    <div class="item-title">
+                        <h3>Tel Aviv University</h3>
+                    </div>
+                    <div class="location">Tel Aviv, Israel</div>
+                    <div class="item-date">May — Present</div>
+                </div>
+                <div class="role">Research Assistant</div>
+                <div class="experience-details">
+                    Conducting simulations to evaluate particle detectors for the Electron-Ion Collider.
+                </div>
+
+                <div class="item-header">
+                    <div class="item-title">
+                        <h3>Max Planck Institute for Plasma Physics</h3>
+                    </div>
+                    <div class="location">Munich, Germany</div>
+                    <div class="item-date">Sep — Oct 2024</div>
+                </div>
+                <div class="role">Research Assistant</div>
+                <div class="experience-details">
+                    Developed internal simulation tools to assess next generationfusion reactor concepts.
+                </div>
+
+                <div class="item-header">
+                    <div class="item-title">
+                        <h3>Max Planck Institute for Plasma Physics</h3>
+                    </div>
+                    <div class="location">Greifswald, Germany</div>
+                    <div class="item-date">Feb — Apr 2024</div>
+                </div>
+                <div class="role">Research Assistant</div>
+                <div class="experience-details">
+                    Analyzed plasma profiles to examine impurity transport, contributed to an upcoming paper.
+                </div>
+
+                <div class="item-header">
+                    <div class="item-title">
+                        <h3>Institut national de la recherche scientifique</h3>
+                    </div>
+                    <div class="location">Montreal, Canada</div>
+                    <div class="item-date">Oct — Jan 2024</div>
+                </div>
+                <div class="role">Research Assistant</div>
+                <div class="experience-details">
+                    Developed software to optimize x-ray flux from laser wakefield acceleration by correction of optical components.
+                </div>
+
+                <div class="item-header">
+                    <div class="item-title">
+                        <h3>Tel Aviv University (with Stanford)</h3>
+                    </div>
+                    <div class="location">Tel Aviv, Israel</div>
+                    <div class="item-date">Aug — Oct 2023</div>
+                </div>
+                <div class="role">Research Assistant</div>
+                <div class="experience-details">
+                    Prepared CAD models and directed preparation for direct laser acceleration experiments from heavy water microjet.
+                </div>
+
+                <div class="item-header">
+                    <div class="item-title">
+                        <h3>Weizmann Institute of Science</h3>
+                    </div>
+                    <div class="location">Rehovot, Israel</div>
+                    <div class="item-date">Jul 2023</div>
+                </div>
+                <div class="role">Research Assistant</div>
+                <div class="experience-details">
+                    Analyzed experimental data to examine theoretical predictions on ultra-light dark matter behavior.
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="cv-section">
+                <h2>Education</h2>
+                <div class="item-header">
+                    <div class="item-title">
+                        <h3>Tel Aviv University</h3>
+                    </div>
+                    <div class="location">Tel Aviv, Israel</div>
+                    <div class="item-date">May — Dec 2027</div>
+                </div>
+                <div class="role">Bachelor of Science in Physics and Mathematics</div>
+                <div class="experience-details">
+                    Coursework: Analysis I, Linear Algebra I, Expanded Intro to CS, Physics I, Set Theory, Physics Mathematical Methods I, Physics Lab I, British Culture I.
+                </div>
+
+                <div class="item-header">
+                    <div class="item-title">
+                        <h3>Herzliya Hebrew Gymnasium</h3>
+                    </div>
+                    <div class="location">Tel Aviv, Israel</div>
+                    <div class="item-date">Sep — Jun 2023</div>
+                </div>
+                <div class="role">Physics, Mathematics, Computational Physics, Mechatronics</div>
+                <div class="experience-details">
+                    GPA: 93/100; SAT: 1490/1600 (Psychometric: 718/800)
+                </div>
+            </section>
+
+            <!-- Publications -->
+            <section class="cv-section">
+                <h2>Publications</h2>
+                <div class="publication-item">
+                    <p>T. Romba, F. Reimold, S. Bannmann, A. Navarro, <strong>T. Bleher</strong>, et al. (2024). 
+                        <a href="https://pure.mpg.de/pubman/faces/ViewItemOverviewPage.jsp?itemId=item_3610374_1">
+                            "Characterizing scenarios of suppressed anomalous impurity transport in Wendelstein 7-X"
+                        </a> (Upcoming).
+                    </p>
+                </div>
+            </section>
+
+            <!-- Awards & Recognition -->
+            <section class="cv-section">
+                <h2>Awards & Recognition</h2>
+                <div class="experience-details">
+                    Awarded full-ride scholarship and selected to represent Israel in the Dr. Bessie F. Lawrence International Summer Science Institute (ISSI) at the Weizmann Institute of Science.
+                </div>
+                <div class="experience-details">
+                    Placed 2nd in the Schwartz-Reisman poster competition for computational physics with <a href="https://github.com/ilayws/SSoF">"Spontaneous Synchronization of Fireflies"</a> and 3rd for <a href="https://github.com/ilayws/NonuniformWaves">"Wave Simulation in non-uniform Medium."</a>
+                </div>
+            </section>
+
+            <!-- Leadership & Activities -->
+            <section class="cv-section">
+                <h2>Leadership & Activities</h2>
+                <div class="item-header">
+                    <div class="item-title">
+                        <h3>Hapoel Beit Dani Wrestling Club</h3>
+                    </div>
+                    <div class="location">Tel Aviv, Israel</div>
+                    <div class="item-date">Oct — Present</div>
+                </div>
+                <div class="role">Wrestler, Team Captain</div>
+                <div class="experience-details">
+                    Led a team of 30 wrestlers, competing nationally and internationally, and served as a past Israel national team member. Organized and motivated team activities and training sessions.
+                </div>
+
+                <div class="item-header">
+                    <div class="item-title">
+                        <h3>Middle East Entrepreneurs of Tomorrow</h3>
+                    </div>
+                    <div class="location">Jerusalem, Israel</div>
+                    <div class="item-date">Sep — Feb 2023</div>
+                </div>
+                <div class="role">Student, Teaching Assistant</div>
+                <div class="experience-details">
+                    Instructed Python to high school students to enrich their existing curriculum.
+                </div>
+                <div class="experience-details">
+                    Facilitated learning by mentoring, hosting office hours, and creating team bonding activities, enhancing student engagement.
+                </div>
+            </section>
+
+            <!-- Skills & Interests -->
+            <section class="cv-section">
+                <h2>Skills & Interests</h2>
+                <div class="skills-grid">
+                    <div class="skill-line">
+                        <span class="skill-label">Technical Skills:</span>
+                        <span class="skill-content">Python, Linux, CAD, JavaScript, Git, LaTeX</span>
+                    </div>
+                    <div class="skill-line">
+                        <span class="skill-label">Foreign Languages:</span>
+                        <span class="skill-content">Hebrew (Native), English (Bilingual), Lithuanian (Proficient), Russian (Conversational)</span>
+                    </div>
+                    <div class="skill-line">
+                        <span class="skill-label">Interests:</span>
+                        <span class="skill-content">Guitar Playing, Vinyl Collecting, Classical Novels, History, Self-study</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="js/main.js"></script>
+</body>
+</html> 

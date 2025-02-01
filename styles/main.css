@@ -1,0 +1,918 @@
+/* Custom styles on top of LaTeX.css */
+:root {
+    --text-color: #000000;        /* Pure black */
+    --bg-color: #FFFFFF;          /* Pure white */
+    --border-color: #CCCCCC;
+    --hover-color: #666666;
+    --line-height: 1.6;
+    --paragraph-indent: 1.5em;
+}
+
+body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: var(--line-height);
+    text-align: justify;
+    hyphens: auto;
+    counter-reset: section;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Header and navigation container */
+.header-container {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+/* Dark mode toggle positioning */
+#dark-mode-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+}
+
+#dark-mode-toggle svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Hide the inappropriate icon based on theme */
+.latex-dark .sun-icon {
+    display: none;
+}
+
+.sun-icon {
+    display: block;
+}
+
+.latex-dark .moon-icon {
+    display: block;
+}
+
+.moon-icon {
+    display: none;
+}
+
+/* Typography */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 2rem 0 0.5rem;
+    font-variant: small-caps;
+}
+
+.author {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-variant: small-caps;
+}
+
+/* Navigation */
+.nav-links {
+    margin: 2rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.nav-links a {
+    margin: 0 2rem;  /* Increased spacing between items */
+    text-decoration: none;
+    color: var(--text-color);
+    font-variant: small-caps;  /* Small caps for menu items */
+    font-size: 1.1rem;  /* Slightly larger font */
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--hover-color);
+}
+
+/* Global section header styling - consistent with publications */
+h2 {
+    margin-bottom: 1rem;
+    font-variant: small-caps;
+    border-bottom: 1px solid var(--text-color);
+    padding-bottom: 0.1rem;
+}
+
+/* Remove any conflicting section header styles */
+.cv-section h2,
+.project-item h2,
+.abstract h2,
+.theorem h2,
+.definition h2 {
+    /* Inherit the global h2 styling */
+    margin-bottom: 1rem;
+    font-variant: small-caps;
+    border-bottom: 1px solid var(--text-color);
+    padding-bottom: 0.1rem;
+}
+
+/* Content sections - clean up any conflicting styles */
+.abstract, .theorem, .definition {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-left: none;
+}
+
+/* Project items - clean up any conflicting styles */
+.project-item {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: none;
+}
+
+/* Publications list - keep existing style */
+.publications-list h2 {
+    /* This is our reference style that we're matching across the site */
+    margin-bottom: 1rem;
+    font-variant: small-caps;
+    border-bottom: 1px solid var(--text-color);
+    padding-bottom: 0.1rem;
+}
+
+/* Lists */
+ul {
+    list-style-type: none;
+    padding-left: calc(var(--paragraph-indent) * 2);
+}
+
+ul li {
+    margin-bottom: 0.8rem;
+    position: relative;
+}
+
+ul li:before {
+    content: "•";
+    position: absolute;
+    left: -1.5em;
+    color: var(--text-color);
+}
+
+/* Publications */
+.publications-list p {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+/* Dark mode - exact opposite colors */
+.latex-dark {
+    --text-color: #FFFFFF;        /* Pure white */
+    --bg-color: #000000;          /* Pure black */
+    --border-color: #333333;      /* Opposite of #CCCCCC */
+    --hover-color: #999999;       /* Opposite of #666666 */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improve contrast for dark mode elements */
+.latex-dark .nav-links {
+    border-color: #111111;
+}
+
+/* Remove any colored backgrounds in dark mode */
+.latex-dark .abstract, 
+.latex-dark .theorem, 
+.latex-dark .definition,
+.latex-dark .project-item {
+    background-color: var(--bg-color);    /* Pure black */
+    border-left-color: var(--text-color); /* Pure white */
+}
+
+.latex-dark .publications-list p {
+    border-left-color: #FFFFFF;
+}
+
+/* Dark mode icon */
+.latex-dark #dark-mode-toggle svg {
+    stroke: var(--text-color);    /* Pure white */
+    transition: stroke 0.3s ease;
+}
+
+/* Dark mode links */
+.latex-dark a {
+    color: var(--text-color);     /* Pure white */
+}
+
+.latex-dark a:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+        text-align: left;
+        hyphens: none;
+    }
+
+    .nav-links a {
+        display: block;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Add these CV-specific styles to your existing main.css */
+
+/* CV Container */
+.cv-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* PDF Download Button */
+.cv-download {
+    text-align: right;
+    margin: 0.5rem 0;
+}
+
+.pdf-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--text-color);
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.pdf-button:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+/* CV Sections */
+.cv-section {
+    margin: 0;
+    padding: 0;
+}
+
+.cv-section:last-child {
+    border-bottom: none;
+}
+
+.cv-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.cv-date {
+    font-family: "Computer Modern Serif", serif;
+    color: var(--text-color);
+}
+
+.cv-details h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.cv-details p {
+    margin: 0.1rem 0;
+}
+
+/* Dark mode adjustments */
+.latex-dark .pdf-button {
+    border-color: var(--text-color);
+}
+
+.latex-dark .pdf-button:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cv-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .cv-date {
+        font-size: 0.9rem;
+        color: var(--text-color);
+        opacity: 0.8;
+    }
+}
+
+/* Add these PDF-like styles to your existing main.css */
+
+/* PDF-like page container */
+.pdf-page {
+    background-color: var(--bg-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    padding: 4rem 3rem;
+    max-width: 850px;
+    min-height: 1100px; /* Approximate A4 ratio */
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+/* Dark mode adjustments for PDF-like page */
+.latex-dark .pdf-page {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Page content */
+.page-content {
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 0;
+}
+
+/* CV Header */
+.cv-header {
+    text-align: center;
+    margin-bottom: 0.15rem;
+    padding-bottom: 0.05rem;
+}
+
+.cv-header h1 {
+    font-size: 2rem;
+    margin: 0 0 0.15rem 0;
+}
+
+.cv-contact {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.cv-contact p {
+    margin: 0.2rem 0;
+}
+
+/* CV Sections */
+.cv-section h2 {
+    margin-bottom: 0.15rem;  /* Distance from "Research Experience" to its underline */
+    padding-bottom: 0.05rem;
+    border-bottom: 1px solid var(--text-color);
+    font-variant: small-caps;
+}
+
+/* CV Items */
+.cv-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.cv-date {
+    font-family: "Computer Modern Serif", serif;
+    color: var(--text-color);
+}
+
+.cv-details h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.institution {
+    font-style: italic;
+    margin: 0.2rem 0;
+}
+
+.description {
+    margin: 0.2rem 0;
+}
+
+/* Page number */
+.page-number {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pdf-page {
+        padding: 2rem 1.5rem;
+        margin: 1rem auto;
+        min-height: auto;
+    }
+
+    .cv-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .cv-date {
+        font-weight: bold;
+    }
+}
+
+/* Print styles */
+@media print {
+    .header-container,
+    .nav-links,
+    .cv-download,
+    #dark-mode-toggle {
+        display: none;
+    }
+
+    .pdf-page {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+/* Add these CV-specific styles */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.skill-category h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.cv-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0.5rem 0;
+}
+
+.cv-list li {
+    position: relative;
+    padding-left: 1.2em;
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+}
+
+.cv-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--text-color);
+}
+
+.publications-list p {
+    margin-bottom: 0.5rem;
+    text-indent: -2em;
+    padding-left: 2em;
+}
+
+/* Enhance PDF-like appearance */
+.pdf-page {
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    margin: 2rem auto;
+    max-width: 850px;
+    position: relative;
+}
+
+.latex-dark .pdf-page {
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* PDF Container styles */
+.pdf-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: var(--bg-color);
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.latex-dark .pdf-container {
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Make PDF viewer responsive */
+@media (max-width: 768px) {
+    .pdf-container {
+        padding: 0.5rem;
+    }
+    
+    .pdf-container iframe {
+        height: 500px;
+    }
+}
+
+/* CV Page Specific Styles */
+.cv-page {
+    padding: 0.5rem;
+    line-height: 1;
+    background-color: transparent;  /* Make background transparent */
+    box-shadow: none;  /* Remove shadow */
+    border: none;  /* Remove any border */
+}
+
+.cv-header {
+    text-align: center;
+    margin-bottom: 0.15rem;
+    padding-bottom: 0.05rem;
+}
+
+.cv-header h1 {
+    font-size: 2rem;
+    margin: 0 0 0.15rem 0;
+}
+
+.contact-line {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.contact-line a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.cv-section {
+    margin: 0;
+    padding: 0;
+}
+
+.cv-section h2 {
+    font-variant: small-caps;
+    border-bottom: 1px solid var(--text-color);
+    padding-bottom: 0.05rem;
+    margin-bottom: 0.1rem;
+}
+
+.item-header {
+    position: relative;
+    margin-bottom: 0.1rem;  /* Distance from "Tel Aviv University" to "Research Assistant" */
+}
+
+.item-title {
+    flex: 1;
+}
+
+.item-title h3 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 0.95rem;
+    padding-right: 200px;  /* Make space for location/date */
+}
+
+.location {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-style: italic;
+    margin: 0;
+    text-align: right;
+    min-width: 150px;
+}
+
+.item-date {
+    position: absolute;
+    top: 1.2em;  /* Reduced from 1.5em */
+    right: 0;
+    text-align: right;
+    min-width: 150px;
+}
+
+.role {
+    font-style: italic;
+    margin: 0.1rem 0;
+}
+
+.awards-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.awards-list li {
+    margin-bottom: 0.1rem;  /* Reduced from 0.2rem */
+}
+
+.skills-grid {
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.skill-category {
+    margin-bottom: 0.25rem;
+}
+
+.skill-line {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.05rem;  /* Reduced from 0.1rem */
+}
+
+.skill-label {
+    font-weight: bold;
+    min-width: 140px;
+}
+
+.skill-content {
+    flex: 1;
+}
+
+.download-cv {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.download-buttons {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.download-button {
+    position: static;  /* Override previous absolute positioning */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.download-button:hover {
+    color: var(--hover-color);
+}
+
+.download-button svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Update tooltip text for download buttons */
+.download-button[aria-label="Download PDF"]::after {
+    content: "PDF";
+}
+
+.download-button[aria-label="Download LaTeX"]::after {
+    content: "LaTeX";
+}
+
+/* Keep the rest of the tooltip styling */
+.download-button::after {
+    position: absolute;
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.download-button:hover::after {
+    opacity: 1;
+}
+
+/* Dark mode adjustments */
+.latex-dark .cv-page {
+    box-shadow: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cv-page {
+        padding: 1rem;
+    }
+
+    .item-header {
+        flex-direction: column;
+    }
+
+    .item-date {
+        margin-top: 0.25rem;
+    }
+}
+
+/* Update bullet points in lists */
+.cv-list li:before,
+.awards-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--text-color);
+}
+
+/* Add style for leadership items */
+.leadership-item {
+    margin-bottom: 0.5rem;
+}
+
+.leadership-item p {
+    margin: 0.1rem 0;
+}
+
+/* Adjust experience items spacing */
+.experience-item {
+    margin-bottom: 0.1rem;  /* Reduced from 0.15rem */
+}
+
+.experience-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Adjust overall spacing */
+.cv-page {
+    padding: 0.5rem;
+    line-height: 1;  /* Tighter line height */
+}
+
+/* Adjust spacing between sections - make it minimal */
+.cv-section + .cv-section {
+    margin-top: 0.4rem !important;  /* Slightly more space between sections */
+}
+
+/* Keep section headers visible but minimal */
+.cv-section h2 {
+    margin-bottom: 0.2rem;
+    padding-bottom: 0.08rem;
+}
+
+/* First section spacing from header */
+.cv-header + .cv-section {
+    margin-top: 0.01rem;  /* Keep minimal */
+}
+
+/* Keep spacing between items within sections compact */
+.experience-item, 
+.education-item,
+.leadership-item {
+    margin-bottom: 0.1rem;
+}
+
+/* Header bottom spacing */
+.cv-header {
+    margin-bottom: 0.1rem;
+    padding-bottom: 0.05rem;
+}
+
+/* Adjust item spacing */
+.experience-item, 
+.education-item,
+.leadership-item {
+    margin-bottom: 0.1rem;  /* Reduced from 0.15rem */
+}
+
+.item-header {
+    margin-bottom: 0.12rem;
+}
+
+/* Adjust role and description spacing */
+.role {
+    margin: 0.08rem 0;
+}
+
+.cv-details p,
+.education-item p,
+.leadership-item p {
+    margin: 0.1rem 0;
+}
+
+/* Adjust awards list spacing */
+.awards-list li {
+    margin-bottom: 0.1rem;  /* Reduced from 0.2rem */
+}
+
+/* Adjust skills section spacing */
+.skill-line {
+    margin-bottom: 0.05rem;  /* Reduced from 0.1rem */
+}
+
+/* Adjust publication spacing */
+.publication-item p {
+    margin-bottom: 0.5rem;
+}
+
+/* Make text slightly smaller */
+.cv-page {
+    font-size: 0.85rem;
+}
+
+.cv-section h2 {
+    font-size: 1.1rem;
+}
+
+.item-title h3 {
+    font-size: 0.95rem;
+}
+
+/* Adjust spacing between items */
+.item-content {
+    margin-top: 0.1rem;
+}
+
+/* Experience bullet points */
+.experience-details {
+    position: relative;
+    padding-left: 1em;  /* Slightly reduced from 1.2em */
+    margin: 0.08rem 0;
+}
+
+.experience-details::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--text-color);
+}
+
+/* Adjust spacing for role and details */
+.role {
+    font-style: italic;
+    margin: 0.08rem 0;
+}
+
+.item-header {
+    position: relative;
+    margin-bottom: 0.12rem;
+}
+
+/* Make first section (Research Experience) closer to header */
+.cv-header + .cv-section {
+    margin-top: 0.01rem;  /* Reduced from 0.02rem */
+}
+
+/* Adjust spacing between sections */
+.cv-section + .cv-section {
+    margin-top: 0.1000rem;  /* Distance from last bullet to next section title */
+}
+
+/* Reduce line height for more compact look */
+.cv-page {
+    line-height: 1;  /* Tighter line height */
+}
+
+/* Section title underline spacing */
+.cv-section h2 {
+    margin-bottom: 0.15rem;  /* Distance from "Research Experience" to its underline */
+    padding-bottom: 0.05rem;
+    border-bottom: 1px solid var(--text-color);
+}
+
+/* First item spacing from section title */
+.cv-section h2 + .item-header {
+    margin-top: 0.1rem;  /* Reduced from 0.2rem */
+}
+
+/* Between bullet points within same institution */
+.experience-details {
+    margin: 0.08rem 0;
+}
+
+/* Between institutions within same section */
+.item-header:not(:first-of-type) {
+    margin-top: 0.1rem;  /* Reduced from 0.2rem */
+}
+
+/* Between sections (e.g., Research Experience to Education) */
+.cv-section + .cv-section {
+    margin-top: 0.4rem !important;  /* Slightly more space between sections */
+}
+
+/* Spacing between sections */
+.cv-section + .cv-section {
+    margin-top: 0.3rem !important;  /* Adjust this value to control spacing between sections */
+}
+
+/* Single rule to control spacing between sections */
+.cv-section + .cv-section {
+    margin-top: 1.0rem !important;  /* Using !important to override any conflicts */
+} 
