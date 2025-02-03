@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Title</title>
+    <link rel="icon" type="image/x-icon" href="../../media/favicon.ico">
+    <script>
+        // Immediately apply dark mode if enabled
+        if (localStorage.getItem("darkMode") === "true") {
+            document.documentElement.classList.add("latex-dark");
+        }
+    </script>
+    <link rel="stylesheet" href="https://latex.vercel.app/style.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <style>
+        /* Custom styles to enhance LaTeX.css */
+        :root {
+            --page-width: 800px;
+            --hover-color: #007AFF;         /* iOS system blue */
+            --transition-duration: 0.5s;     /* Increased for smoother transition */
+            --transition-timing: cubic-bezier(0.4, 0, 0.2, 1); /* Material Design easing */
+        }
+
+        .blog-container {
+            max-width: var(--page-width);
+            margin: 0 auto;
+            padding: 0 1rem;
+            font-family: "Latin Modern", Georgia, Cambria, "Times New Roman", Times, serif;
+        }
+
+        .blog-header {
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .blog-title {
+            font-size: 2.3rem;
+            font-weight: normal;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .blog-metadata {
+            font-style: italic;
+            color: var(--secondary-text);
+            margin-bottom: 2rem;
+        }
+
+        /* Enhance LaTeX.css theorem environments */
+        .theorem, .lemma, .definition, .corollary {
+            margin: 1rem 0;
+            padding: 0.5rem 1rem;
+            border-left: 3px solid var(--text-color);
+            font-style: italic;
+        }
+
+        .theorem::before,
+        .lemma::before,
+        .definition::before,
+        .corollary::before {
+            font-weight: bold;
+            font-style: normal;
+            margin-right: 0.5rem;
+        }
+
+        .theorem::before { content: "Theorem." }
+        .lemma::before { content: "Lemma." }
+        .definition::before { content: "Definition." }
+        .corollary::before { content: "Corollary." }
+
+        .proof {
+            margin: 1rem 0;
+            font-style: normal;
+        }
+
+        .proof::before {
+            content: "Proof.";
+            font-style: italic;
+            margin-right: 0.5rem;
+        }
+
+        .proof::after {
+            content: "□";
+            float: right;
+            margin-top: -1.5rem;
+        }
+
+        /* Dark mode adjustments */
+        .latex-dark {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .latex-dark .theorem,
+        .latex-dark .lemma,
+        .latex-dark .definition,
+        .latex-dark .corollary {
+            border-left-color: var(--text-color);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .blog-title {
+                font-size: 2rem;
+            }
+
+            .blog-container {
+                padding: 0 0.5rem;
+            }
+        }
+
+        /* Update nav-links to accommodate the dark mode toggle */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 2rem;
+            border-top: 1px solid var(--text-color);
+            border-bottom: 1px solid var(--text-color);
+            position: relative;
+            width: calc(100% + 4rem);
+            margin: 2rem -2rem;
+            box-sizing: border-box;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-variant: small-caps;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--text-color);
+            transform: scaleX(0);
+            transition: transform 0.15s ease;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-color);
+        }
+
+        #dark-mode-toggle {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+            width: 2rem;
+            height: 2rem;
+            z-index: 2;
+            margin: 0;
+        }
+
+        #dark-mode-toggle:hover {
+            color: var(--link-hover-color);
+        }
+
+        #dark-mode-toggle svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Hide the inappropriate icon based on theme */
+        .latex-dark .sun-icon {
+            display: none;
+        }
+
+        .sun-icon {
+            display: block;
+        }
+
+        .latex-dark .moon-icon {
+            display: block;
+        }
+
+        .moon-icon {
+            display: none;
+        }
+
+        html.latex-dark {
+            --hover-color: #0A84FF;
+        }
+    </style>
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <main>
+        <div class="header-container">
+        </div>
+        
+        <nav class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../publications.html">Publications</a>
+            <a href="../../projects.html">Projects</a>
+            <a href="../../cv.html">CV</a>
+            <a href="../../teaching.html">Teaching</a>
+            <a href="../../hobbies.html">Hobbies</a>
+            <a href="../../resources.html">Resources</a>
+            <a href="blog.html">Blog</a>
+            <a href="../../contact.html">Contact</a>
+            <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </nav>
+
+        <article class="blog-container">
+            <header class="blog-header">
+                <h1 class="blog-title">Title of Your Blog Post</h1>
+                <div class="blog-metadata">January 2024</div>
+            </header>
+
+            <p>
+                This is your introduction paragraph. You can include inline math like $e^{i\pi} + 1 = 0$ within the text.
+                <aside class="sidenote">
+                    This is a side note using LaTeX.css's native sidenote feature.
+                </aside>
+            </p>
+
+            <div class="theorem">
+                Let $X$ be a topological space. Then $X$ is connected if and only if the only subsets of $X$ that are both open and closed are $X$ and the empty set.
+            </div>
+
+            <p>
+                Here's a proof of the theorem.
+                <aside class="margin-figure">
+                    <img src="path_to_your_image.png" alt="Description">
+                    <figcaption>This is a margin figure with a caption.</figcaption>
+                </aside>
+            </p>
+
+            <div class="proof">
+                Let's prove this step by step. First, assume $X$ is connected...
+            </div>
+
+            <p>
+                You can also include displayed equations:
+                $$
+                \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+                $$
+            </p>
+
+            <div class="definition">
+                A topological space $X$ is called connected if it cannot be written as the union of two disjoint non-empty open sets.
+            </div>
+
+            <p>
+                Continue with more content...
+                <aside class="sidenote">
+                    Another side note with additional information or references.
+                </aside>
+            </p>
+
+            <div class="lemma">
+                A useful lemma about connectedness.
+            </div>
+
+            <div class="corollary">
+                An interesting corollary that follows.
+            </div>
+        </article>
+    </main>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

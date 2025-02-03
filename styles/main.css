@@ -154,15 +154,17 @@ p, span, a, li,
 
 /* Navigation */
 .nav-links {
-    margin: 2rem 0;
-    padding: 1rem 0;
+    margin: 2rem -2rem;  /* Negative margin to extend past the body padding */
+    padding: 1rem 2rem;  /* Padding to maintain spacing */
     border-top: 1px solid var(--text-color);
     border-bottom: 1px solid var(--text-color);
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-wrap: nowrap;
-    gap: 2rem;
+    width: calc(100% + 4rem);  /* Compensate for the negative margins */
+    box-sizing: border-box;
+    gap: 1.5rem;
 }
 
 .nav-links a {
@@ -170,7 +172,7 @@ p, span, a, li,
     text-decoration: none;
     color: var(--text-color);
     font-variant: small-caps;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     white-space: nowrap;
 }
 
@@ -313,12 +315,17 @@ ul ul {
     }
 
     .nav-links {
-        flex-direction: column;
-        gap: 0.5rem;
+        margin: 2rem -1rem;  /* Smaller negative margin for mobile */
+        padding: 1rem;
+        width: calc(100% + 2rem);  /* Adjust width for mobile */
+        flex-direction: column;  /* Stack items vertically on mobile */
+        gap: 0.5rem;  /* Spacing between stacked items */
     }
     
     .nav-links a {
-        margin: 0.5rem 0;
+        margin: 0.25rem 0;
+        font-size: 1rem;
+        text-align: center;
     }
 }
 
@@ -1138,4 +1145,51 @@ a:hover {
 
 .theme-transition-overlay.active {
     opacity: 1;
+}
+
+/* Blog styles */
+.blog-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blog-list li {
+    margin-bottom: 2rem;
+    padding-left: 0;
+}
+
+.blog-list li::before {
+    display: none;
+}
+
+.blog-list .title-date {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.3rem;
+}
+
+.blog-list a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.blog-list a:hover {
+    text-decoration: underline;
+}
+
+.post-date {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    white-space: nowrap;
+    margin-left: 1rem;
+}
+
+.post-description {
+    margin: 0.3rem 0 0 0;
+    color: var(--text-color);
+    line-height: 1.4;
 }
