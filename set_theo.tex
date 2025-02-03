@@ -1,0 +1,933 @@
+\documentclass{tufte-handout} % A4 paper and 11pt font size
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{mathpazo} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm, amssymb} % Math packages
+\usepackage{pgf,tikz}
+\usetikzlibrary{positioning,matrix,arrows}
+\usepackage{float}
+\usepackage{tikz-cd}
+\usepackage{caption}
+\usepackage{stmaryrd}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{verbatim}
+\usepackage{tcolorbox}
+\usepackage{svg}
+\usepackage{tikz}
+\usepackage{pslatex}
+\usepackage{polyglossia}
+
+\usepackage[english]{babel}
+\usetikzlibrary{calc,trees,positioning,arrows,fit,shapes,calc}
+% Customize tcolorbox for the block quote
+\tcbset{
+    myquote/.style={
+        colback=gray!10, % Background color
+        colframe=gray!10, % Frame color to match background
+        sharp corners, % Square corners
+        boxrule=0pt, % No outline
+        left=1mm, % Left padding
+        right=1mm, % Right padding
+        top=1mm, % Top padding
+        bottom=1mm, % Bottom padding
+    }
+}
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\normalfont \bfseries} % Make all sections centered, the default font and small caps
+\usepackage{enumerate}
+\usepackage{pythonhighlight}
+\usepackage{fancyhdr} % Custom headers and footers
+\renewcommand{\thefootnote}{\tiny\arabic{footnote}}
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+\allowdisplaybreaks
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{facts}[thm]{Facts}
+\newtheorem{fact}[thm]{Fact}
+\newtheorem{clm}[thm]{Claim}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+
+\newcommand{\bra}[1]{\left(#1\right)}
+\newcommand{\sbra}[1]{\left[#1\right]}
+\newcommand{\Mod}[1]{\ (\text{mod}\ #1)}
+\newcommand{\op}[1]{#1^{\text{op}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\mZ}{\mathcal{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\bH}{\mathbb{H}}
+\newcommand{\one}{\mathbb{1}}
+\newcommand{\mC}{\mathcal{C}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\mR}{\mathcal{R}}
+\newcommand{\mS}{\mathcal{S}}
+\newcommand{\lp}{{\mathfrak{p}}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\aut}{Aut}
+\DeclareMathOperator{\gal}{Gal}
+\DeclareMathOperator{\var}{\textbf{var}}
+\DeclareMathOperator{\orb}{Orb}
+\DeclareMathOperator{\ff}{Frac}
+\DeclareMathOperator{\stab}{Stab}
+\DeclareMathOperator{\inn}{Inn}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\spn}{Span}
+\DeclareMathOperator{\out}{Out}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\disc}{disc}
+\DeclareMathOperator{\tors}{Tors}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\conjc}{Conj}
+\DeclareMathOperator{\Br}{Br}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Nm}{Nm}
+\DeclareMathOperator{\Char}{char}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\inp}[2]{\left\langle #1, #2 \right\rangle}
+\makeatletter
+\def\moverlay{\mathpalette\mov@rlay}
+\def\mov@rlay#1#2{\leavevmode\vtop{%
+   \baselineskip\z@skip \lineskiplimit-\maxdimen
+   \ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}}}
+\newcommand{\charfusion}[3][\mathord]{
+    #1{\ifx#1\mathop\vphantom{#2}\fi
+        \mathpalette\mov@rlay{#2\cr#3}
+      }
+    \ifx#1\mathop\expandafter\displaylimits\fi}
+\makeatother
+
+\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
+\def \v {\vspace{0.2cm}}
+
+\geometry{
+	left=13mm, % left margin
+	textwidth=130mm, % main text block
+	marginparsep=8mm, % gutter between main text block and margin notes
+	marginparwidth=55mm % width of margin notes
+}
+\fontsize{10}{20}\selectfont
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{	
+	\normalfont\normalsize 
+	{Tel Aviv University - Summer 2024} \\ [0pt] % Your university, school and/or department name(s)
+	\huge Introduction to Set Theory % The assignment title
+}\author{Tom Bleher} % Your name
+\date{\vspace{-5pt}\normalsize\today} % Today's date or a custom date
+
+
+\setdefaultlanguage{english}
+\setotherlanguage{hebrew}
+
+
+\newfontfamily\hebrewfont{Frank Ruehl CLM}
+\newfontfamily\hebrewfontsf{Simple CLM}
+\newfontfamily\hebrewfonttt{Miriam Mono CLM}
+
+
+\begin{document}
+\justifying 
+\maketitle
+
+\tableofcontents
+
+\section{Preface}
+These notes are based on a series of lectures given in Tel Aviv University. The course is taken by mathematics majors and requires no previous knowledge-except maybe some basic high school mathematical education. The course introduces $\mathrm{ZFC}$ Set Theory, but mostly retains from stating or referencing the Zermelo-Fraenkel ($\mathrm{ZF}$) axioms explicitly. The main inspirations for these notes are Cunningham's excellent textbook, \href{https://www.amazon.com/Set-Theory-Cambridge-Mathematical-Textbooks/dp/1107120322}{Set Theory: A First Course}; Prof. Shiri Artstein's notes; and Omer Keshet's recitation logs.
+\newpage
+\thispagestyle{plain}
+\vspace*{\fill}
+\begin{center}
+    \makebox[\textwidth][c]{
+        \Large To Anna Gamburd
+    }
+\end{center}
+\vspace*{\fill}
+\newpage
+\section{Introduction}
+\subsection{Logical Notation}
+Like any language, mathematics requires learning and practice in order to be able to efficiently communicate. We will outline some logical symbols often used in mathematics which will be used throughout the document.\\\\
+Consider the following statements $P$: "It is raining" and $Q$: "I will bring an umbrella." $P$ and $Q$ can either be true or false statements. 
+To denote negotiation, we use the symbol $\neg$ before the object to say "not". For example, $\neg$"True" = "False" and $\neg$"False" = "True". In our example, we use the symbol to express:  
+\begin{itemize}
+    \item $\neg P$, "It is \textbf{not} raining."
+    \item $\neg Q$, "I will \textbf{not} bring an umbrella."
+\end{itemize}
+We read the arrow $\Rightarrow$ as "if, then" and $\Longleftrightarrow$ as "if and only if" such that in our example:
+\begin{itemize}
+    \item \(P \Rightarrow Q\), read "if $P$, then $Q$," translates to the statement: "If is raining, I will bring an umbrella." 
+    \item \(P \Longleftrightarrow Q\), read "if and only if $P$, then $Q$," translates to the statement "If and only if it is raining I will bring an umbrella." 
+\end{itemize}
+We use the symbol $\forall$ to say "for all" or "for any" and $\exists$ to say "exists" or "there is". Additionally, we denote $\wedge$ for "and" and $\vee$ for "or". This "or," however, is different than the "or" used in the English language. It is not an exclusive or, this means that a statement like "He will choose between Mathematics or Physics" makes little sense in mathematical language since the mathematical or is either Mathematics, Physics, or both Mathematics and Physics.\footnote{A nice way to remember these symbols is thinking of them as cups. $\vee$ will hold more since its opening is accessible. On the other hand, $\wedge$'s opening is sealed and so less statements hold for it. This is true even in our example since there are more people who are physicists, mathematicians, or both than there are people who are both physicists and mathematicians.} \\\\
+Using our recent acquired symbols, we can construct the truth table for all the different cases of $P$ and $Q$.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+$P$ & $\neg P$ & $Q$ & $\neg Q$ & $P \Rightarrow Q$ & $\neg Q \Rightarrow \neg P$ & $Q \wedge P$ & $P \vee Q$\\
+\hline
+T & F & T & F & T & T & T & T\\
+T & F & F & T & F & F & F & T\\
+F & T & T & F & T & T & F & T \\
+F & T & F & T & T & T & T & F\\
+\hline
+\end{tabular}
+\\
+\end{center}
+\marginnote{Table 1: Truth table showing the values of $P$, $\neg P$, $Q$, $\neg Q$, implications $P \Rightarrow Q$ and $\neg Q \Rightarrow \neg P$, "or" $Q \wedge P$, and "and" $P \vee Q$ for different $P$ and $Q$.}
+Take a moment to pause an ponder, reading the different combinations in your head. When both $P$ and $Q$ are true - that is, it is both raining we brought an umbrella - the statement is true since the statement "If is raining, I will bring an umbrella." holds because it rained and we brought an umbrella. On the other hand, when $P$ is true (it is raining) and $Q$ is false (we did not bring an umbrella) the did not follow the advice and .
+
+When $P$ is false (it is not raining) we do not have to stress over forgetting our umbrella since the concern is not relevant and the proposition $P\Rightarrow Q$ was never tested. As such, it will remain true.
+
+\\
+
+Lastly, we denote "$:$" or "$|$" to say "such that". For example, consider the readers such that the reader will finish the document. These is namely a restriction on the first statement saying that we are interested only in the part of readers who finished reading the text from all the readers of this document. \\
+Equipped with the mathematical language, we can construct sentences such as:\footnote{Please translate the following sentences to English.}
+\begin{align*}
+    \exists y\forall x(x<y) \\    
+\end{align*}
+\\
+For more complicated logical sentences which require more accuracy we will use parentheses to separate the different components such that 
+
+An important result in logic is the so called De Morgan's laws which state that 
+\begin{align*}
+    {\displaystyle \neg (P\lor Q)\iff (\neg P)\land (\neg Q),} \\
+    {\displaystyle \neg (P\land Q)\iff (\neg P)\lor (\neg Q)}
+\end{align*}
+
+ADD SOME NOTES ABOUT FORMING SENTENCES AND THE ROLE OF $()$ AND , 
+\\
+\subsection{Elementary Set Theory}
+Loosely speaking, a set is a collection of objects.\footnote{This sloppy language will come to haunt us as you'll soon see.} We denote the set using curly brackets. Between the brackets, we denote the set's elements separated by commas. For example, $S= \{1,2,3,4\}$ is the set containing the numbers one to four. The contents of a set can be almost anything.\footnote{Some limitations will be discussed in the future. For example, see Russel's Paradox.} For example, the following are as much sets as the previous example:
+\begin{align*}
+    &A = \{\text{Anna}, \text{Ilay}, \text{Shusha}\} \text{ - The set containing some of my friends} \\
+    &R = \{\pi, \sqrt{2}, e, \sqrt{5}\} \text{ - The set containing some numbers}\\
+    &G = \{a,b,c,d\} \text{ - The set containing some letters of the English alphabet}
+\end{align*}
+As you likely noticed, we usually denote a set with a capital letter. To refer to an element in a set we can write $a\in A$ where $\in$ is read as "in". As such, writing $a\in A$ refers to one of my friends: Anna, Ilay, or Shusha. These are said to be elements of the set $A$. For example, $\text{Anna} \in A$ since she is my friend and is an element (or member) of the set $A$. Similarly, we can use $\not\in$ (read as "not in") to denote elements which do not belong to a set. As such, $z,1 \not\in G$ and $\pi \not\in A$ (here we used a comma as a shortage to say that $z$ and $1$ are not elements of the set $G$). As aspiring mathematicians, we will mostly utilize the sets to hold numbers.
+\\
+Sets have two important properties:
+\begin{enumerate}
+    \item The order which the elements appear in a set holds no significance
+    \item The number of occurrences of an element in a set holds no significance
+\end{enumerate}
+To illustrate consider these examples,
+\begin{align*}
+    & A = \{\text{Anna}, \text{Ilay}, \text{Shusha}\} = \{\text{Shusha}, \text{Ilay}, \text{Anna} \} \\
+    & G = \{a,a,b,c,d\} = \{a,b,c,d\} \\
+    & R = \{\pi, \pi, \sqrt{2}, e, \sqrt{5}\} = \{\sqrt{2}, e, \pi, \pi, \sqrt{5}\} = \{\pi, \sqrt{2}, e, \sqrt{5}\}
+\end{align*}
+Despite their equality, as a rule of thumb, we will aspire to denote the set in its repetition-free form. Following our previous definition of a set, we can also define sets which contain sets as elements. For example, 
+\begin{align*}
+    X = \{A,R,G\} = \{\{\text{Anna}, \text{Ilay}, \text{Shusha}\}, \{\pi, \sqrt{2}, e, \sqrt{5}\}, \{a,b,c,d\}\}
+\end{align*}
+It's important to pause and ponder: is Ilay $\in X$? No. This is because Ilay is not an element of $\{A,R,G\}$. While it is true that Ilay is an element of $A$, \textbf{notice the additional curly brackets} that surround Ilay - the element itself is not an element in the set of the sets. This is because an element of the set of sets, $X$, is one of $A,R,G$ and not one of their elements. \\\\
+A special set we want to discuss is The following are special sets which make communication and expression of mathematical ideas particularly easy:\footnote{More precise definitions for these special sets will follow.}
+\begin{align*}
+    &\mathbb{N} = \{0,1,2,3,\ldots\} \text{ - The natural numbers} \\
+    &\mathbb{Z} = \{\ldots,-3,-2,-1,0,1,2,3,\ldots\} \text{ - The set of integers} \\
+    &\mathbb{Q} = \text{The set of rational numbers} \\
+    &\mathbb{R} = \text{The set of real numbers} 
+\end{align*}\footnote{The rational numbers are the numbers which can be represented as fractions. The real numbers are an expansion of the rational numbers which includes irrational numbers like $\pi$ or $\sqrt{2}$ that can not be expressed as fractions.}
+As such, we can see that, for example, $\frac{3}{2}\in \mathbb{Q}$ and $\pi \in \mathbb{R}$. \\\\
+Let us now define the following key ideas: 
+\begin{enumerate}
+    \item Sets $A$ and $B$ are said to be equal if they share all elements. This is why we were able to denote equality between the repetition-free set and the set with repetitive elements: each element of the repetition-free set is an element of the element-repetitive set and vise versa. In this case, we denote $A=B$. 
+    \item Set $A$ is said to be a subset of $B$ if every element of $A$ is also an element of the set $B$. In this case, we will denote $A \subseteq B$. \footnote{Notation varies greatly. I will use $\subseteq$ to denote the subset and $\subsetneq$ for a proper subset.}
+    \item Set $A$ is said to be a \textbf{proper} subset of $B$ if every element of $A$ is also an element of the set $B$ and $A \neq B$ ($A$ is not equal to $B$). In this case, we will denote $A \subsetneq B$. \footnote{Often, when obvious from context or when there's no need to emphasize the inequality of the sets, it is common to denote $\subseteq$ even if, in reality $\subsetneq$.}
+\end{enumerate}
+Please notice that \( A = B \Longleftrightarrow A \subseteq B \text{ and } B \subseteq A \). This is because every element of \( A \) is in \( B \), and every element of \( B \) is in \( A \). For example, if \( A = \{1, 2, 3\} \) and \( B = \{1, 2, 3\} \), then \( A = B \) because every element of \( A \) is in \( B \) and vice versa. As such, sets \( A \) and \( B \) share all their elements and are equal. With this idea, we see that, for example, 
+\begin{align*}
+    \mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \subseteq \mathbb{R} 
+\end{align*}
+This is because the sets, as presented above, are not equal and each of the elements of a set left to the proper subset sign are also elements of the set to the sign's right. As such, every element of the natural numbers is an element of the whole numbers and so on.
+\\\\
+It is important to stop for a moment and take in the crucial differences between $\subseteq$ and $\in$. Let us illustrate the difference using the following examples:
+\begin{align*}
+    &\{1\} \subseteq \{1,2\}, \{1\} \not\in \{1,2\} \\
+    &\{1\} \in \{\{1\},\{2\}\}, \{1\} \not\subseteq \{\{1\},\{2\}\}\\
+    &\{1\}\in \{1,\{1\}\}, \{1\}\subseteq \{1,\{1\}\}
+\end{align*}
+It easy easy to remember the difference by adjusting ourselves to ask different questions based on the sign. For $\subseteq$, we ask ourselves "Is every element in the left term $\subseteq$ in the set to the right?" For $\in$, on the other hand, we ask: "Is the term left to $\in$ explicitly appear as a term in the set right to the sign?." Ponder about how these questions are different and apply to the cases above. 
+\\\\$\subseteq$
+Another key concept is the idea of set operations. These are special operations which can be performed on sets. Given sets $A,B$ we can denote these operations as:
+\begin{enumerate}
+    \item $A\cup B $ is called the \textbf{union} of the sets
+    \item $A\cap B $ is called the \textbf{intersection} of the sets
+    \item $A\setminus B $, often read "minus", is called the \textbf{set difference} 
+    \item $A\Delta B = (A\setminus B) \cup (B\setminus A)$ is called the \textbf{symmetric difference} of the sets \footnote{Notice that $\wedge$ is used interchangeably with $\cup$ and $\vee$ is used interchangeably with $\cap$. As a rule of thumb, we prefer $\wedge, \vee$ for more abstract expressions and $\cap, \cup$ for set-related expressions. As such, we could have also used $\vee$ in this case to separate the expressions.}
+\end{enumerate}
+These can be nicely represented using Venn diagrams which will serve us for the rest of this course whenever in search for intuition. As such,
+\\
+\def\firstcircle{(0,0) circle (1.05cm)}
+\def\secondcircle{(0:1.4cm) circle (1.05cm)}
+
+\colorlet{circle edge}{black!50}
+\colorlet{circle area}{black!20}
+
+\tikzset{filled/.style={fill=circle area, draw=circle edge, thick},
+    outline/.style={draw=circle edge, thick}}
+\begin{minipage}[t]{0.35\textwidth}
+    \centering
+    \begin{tikzpicture}
+        \draw[filled] \firstcircle node {$A$}
+                      \secondcircle node {$B$};
+        \node[anchor=south] at (current bounding box.north) {$A \cup B$};
+    \end{tikzpicture}
+\end{minipage}%
+\begin{minipage}[t]{0.35\textwidth}
+    \centering
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \firstcircle;
+            \fill[filled] \secondcircle;
+        \end{scope}
+        \draw[outline] \firstcircle node {$A$};
+        \draw[outline] \secondcircle node {$B$};
+        \node[anchor=south] at (current bounding box.north) {$A \cap B$};
+    \end{tikzpicture}
+\end{minipage}
+\vspace{2mm} % Adjust vertical space between rows if necessary
+\marginnote{Fig 1: Venn diagrams of set operations. The shaded regions represent the new set resulting from the operations on sets $A,B$.}
+\\
+\begin{minipage}[t]{0.35\textwidth}
+    \centering
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \firstcircle;
+            \draw[filled, even odd rule] \firstcircle node {$A$}
+                                         \secondcircle;
+        \end{scope}
+        \draw[outline] \firstcircle
+                       \secondcircle node {$B$};
+        \node[anchor=south] at (current bounding box.north) {$A \setminus B$};
+    \end{tikzpicture}
+\end{minipage}%
+\begin{minipage}[t]{0.35\textwidth}
+    \centering
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \firstcircle;
+            \fill[filled] \secondcircle;
+        \end{scope}
+        \begin{scope}
+            \clip \secondcircle;
+            \fill[filled] \firstcircle;
+        \end{scope}
+        \draw[outline] \firstcircle node {$A$}
+                       \secondcircle node {$B$};
+        \node[anchor=south] at (current bounding box.north) {$A \Delta B$};
+    \end{tikzpicture}
+\end{minipage}
+\\\\
+Similarly, we can use Venn diagrams to illustrate the ideas presented above:
+\def\thirdcircle{(0,0) circle (1.05cm)}
+\def\fourthcircle{(0:0.4cm) circle (0.5cm)}
+\def\fifthcircle{(0:0cm) circle (0.5cm)}
+\def\sixthcircle{(0:-0.7cm) circle (1.05cm)}
+
+\begin{minipage}[t]{0.35\textwidth}
+    \centering
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \thirdcircle;
+            \draw[filled, even odd rule] \fifthcircle;
+        \end{scope}
+        \draw[outline] \thirdcircle node[xshift=-0.75cm] {$B$}
+                       \thirdcircle node {$A$};
+        \node[anchor=south] at (current bounding box.north) {$A \subseteq B$};
+    \end{tikzpicture}
+\end{minipage}%
+\vspace{2mm} % Adjust vertical space between rows if necessary
+\begin{minipage}[t]{0.35\textwidth}
+    \centering
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \sixthcircle;
+            \fill[filled] \secondcircle;
+        \end{scope}
+        \begin{scope}
+            \clip \sixthcircle;
+            \fill[filled] \secondcircle;
+        \end{scope}
+        \draw[outline] \sixthcircle node {$A$}
+                       \secondcircle node {$B$};
+        \node[anchor=south] at (current bounding box.north) {$A \cap B = \emptyset$};
+    \end{tikzpicture}
+\end{minipage}
+\footnote{When $A \cap B = \emptyset$ the sets are said to be disjoint. When two sets $A,B$ are disjoint, their union is marked with a special dot $A \cupdot B$ to show that we are unifying two disjoint sets. This union will consist elements which were originally only in either $A$ or $B$.}
+\\
+\begin{minipage}[t]{0.42\textwidth}
+    \centering
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \thirdcircle;
+            \draw[filled, even odd rule] 
+                                         \thirdcircle;
+        \end{scope}
+        \draw[outline] \thirdcircle
+                       \thirdcircle node {$A,B$};
+        \node[anchor=south] at (current bounding box.north) {$A = B$};
+    \end{tikzpicture}
+\end{minipage}%
+\begin{minipage}[t]{0.30\textwidth}
+    \centering
+    \begin{tikzpicture}
+        \begin{scope}
+            \clip \thirdcircle;
+            \fill[filled] \fourthcircle;
+        \end{scope}
+        \begin{scope}
+            \clip \fourthcircle;
+            \fill[filled] \thirdcircle;
+        \end{scope}
+        \draw[outline] \thirdcircle node[xshift=-0.5cm] {$B$}
+                       \fourthcircle node {$A$};
+        \node[anchor=south] at (current bounding box.north) {$A \subsetneq B$};
+    \end{tikzpicture}
+\end{minipage}
+\\\\
+Let us now introduce the power set. Denoted by $\mathcal{P}$, the power set acts on a set and is defined as the set containing all the subset of the set it acts on. For example, let $W = \{1,2,3\}$. $\mathcal{P}(W)=\{\{1\},\{2\},\{3\},\{1,2\},\{1,3\}, \{2,3\}, \{1,2,3\}, \emptyset\}$\footnote{Notice that the power set of $W$ has $2^{3}=8$ elements. In general, if a set has $n$ elements, its power set will have $2^{n}$ elements.} stop and please make sure that you understand why all the elements of the power set are subsets of the set $W$.
+\subsection{Russel's Paradox}
+Bertrand Russell, mathematician, logician, philosopher, and public intellectual was the first to point the problematic in the ambiguous definition of a set outlines by Cantor at the beginning of the document above\footnote{"A set is a collection of objects."}. Russel defined the following set:
+\begin{align*}
+    A = \{x: x\not\in x\}
+\end{align*}
+His set, as presented above, consists of all the elements which are not self-contained. The question arises, is $A\in A$ or $A\not\in A$? Suppose $A\in A$ then $A$ must satisfy $A\not\in a$, which is a contradiction. Suppose $A\not\in A$ since it satisfies the requirement $x\not\in x$ then it is in the set such that $A\in A$, which is, again, a contradiction. Russel's simple argument threatened the very foundations of set theory and raised the important question: \textit{how does one correctly construct a set?}
+
+% -------------------------
+
+\subsection{Construction of Sets and Formalization}
+As demonstrated by Russel's paradox, the construction of sets is not as simple as first outlined by Cantor. Previously we have discussed the the empty set - its existence is in fact an axiom. What other sets could we construct? We can construct a set using the logical operator "such as" (as presented in the previous chapter) followed by other logical symbols. The problem arises when when referring to things like "the set of all sets" and similar loosely defined terms. This is how Russell's set (the set on which the argument was presented) despite using formal "such as" and logical symbol construction managed to create a paradox in our naive theory we have so far presented.\footnote{This "naive set theory" was problematic much because of such paradoxes and required additional work. One of these axiomatic approaches to set theory is ZF/ZFC which we use extensively without explicitly stating (unfortunately).} The way to fix Russell's paradox is the so called "subset axiom"\footnote{Despite the course not stating the axioms explicitly, I think it's worthwhile to have an idea of them. One good resource is Cunningham's book, pages 38-39. As an exercise to the reader, try and find the axioms which were used so far.} which states that for the usage of "such as" we must have an already well-defined set ($S$ as seen below) such that we can form new sets demanding that the elements follow the function $\varphi(x)$:
+\begin{align*}
+    \forall A \exists S \forall x (x \in S \Longleftrightarrow (x\in A \land \varphi(x))).
+\end{align*}
+Using this technique for set building, our definitions of the union, intersection, difference, and symmetric difference are defined to be:
+\begin{enumerate}
+    \item $A\cup B = \{x: x\in A \vee x\in B\}$ is called the \textbf{union} of the sets
+    \item $A\cap B = \{x: x\in A \wedge x\in B\}$ is called the \textbf{intersection} of the sets
+    \item $A\setminus B = \{x: x\in A \wedge x\not\in B\}$, often read "minus", is called the \textbf{set difference} 
+    \item $A\Delta B = (A\setminus B) \cup (B\setminus A)$ is called the \textbf{symmetric difference} of the sets \footnote{Notice that $\wedge$ is used interchangeably with $\cup$ and $\vee$ is used interchangeably with $\cap$. As a rule of thumb, we prefer $\wedge, \vee$ for more abstract expressions and $\cap, \cup$ for set-related expressions. As such, we could have also used $\vee$ in this case to separate the expressions.}
+\end{enumerate}
+It is only appropriate to properly define the rest of the previous definitions\footnote{We should also update our definition of the set of rational numbers $\mathbb{Q} = \{{p}/{q}: (p,q\in \mathbb{Z}) \wedge (q\neq 0) \}$ which we previously "defined" as 'The set of rational numbers'. The definition of the real number set unfortunately will not be covered in this course.} We also use the definition to construct the definition of the power set:
+\begin{align*}
+    \mathcal{P}(A) = \{x: x \subseteq A\}
+\end{align*}
+This is read as "$x$ such that $x$ is a subset of $A$."\\
+Next, we present the generalization of the intersection and union for $n$ sets. For this, let $I=\{1,2,3,4,\ldots,n\}$ - the index set. As such we can define
+\begin{align*}
+    \bigcup_{i\in I} = \{x: \exists i \in I, x\in A_{i}\} \\
+    \bigcap_{i\in I} = \{x: \forall i\in I, x\in A_{i}\}
+\end{align*}
+These are the union and intersection over multiple sets $A_{1}$, $A_{2}$, $\ldots$, $A_{n}$. In order, these are sets which restrict $x$ such that $x$ is an element of one of the sets $A_{1}$, $A_{2}$, $\ldots$, $A_{n}$ and $x$ such that $x$ is an element of each of the sets $A_{1}$, $A_{2}$, $\ldots$, $A_{n}$. To illustrate, let $\mathcal{F}=\{\{a,b,c,e\},\{e,f\}, \{e,c,d\}\}$. We see that 
+\begin{align*}
+    &\bigcup_{i\in I=\{1,2,3\}} A_{i} = \{a,b,c,d,e,f\} \\
+    &\bigcap_{i\in I=\{1,2,3\}} A_{i} = \{e\} 
+\end{align*}
+
+\section{Relations and Functions}
+\subsection{Ordered Pairs and The Cartesian Product}
+We have previously established that sets do not hold significance for their order in which the elements appear. We now present the ordered pair. This can be useful to record order-sensitive information - spanning from birth dates, to points a plane, and even for \textit{defining what a function is}. We denote the ordered pair as $\langle  a,b \rangle$.\footnote{The ordered pair is also sometimes denoted by $(a,b)$.} While for sets, $\{a,b\}=\{b,a\}$ as established earlier, the ordered pair is the unique set characterized by the property $\langle  a,b \rangle \neq \langle  b,a \rangle$. The ordered pair is defined using sets where for its first component $a$ and its second component $b$ we denote $\langle a,b \rangle = \{\{a\},\{a,b\}\}$. In the special case where $a=b$, we are left with the singleton\footnote{The name for a set containing a single element.} $\{\{a\},\{a,a\}\}=\{\{a\},\{a\}\}=\{a\}$.\footnote{This set can represented, for example, by all the ordered pair (or coordinates) of the function $f(x)=x$.} Now, consider the ordered pairs $\langle a,b \rangle$ and $\langle c,d \rangle$. If the ordered pairs are equal, then $a=c$ and $b=c$. Applying the definition we outlined above, $\{\{a\},\{a,b\}\}=\{\{c\},\{c,d\}\}$. This in turn implies that $a=c$ or $a=c=d$ and $b=a=d$. If $c\neq d$ then $\{a,b\}=\{c,d\}$ and $b=d$.
+\\\\
+Given two sets $A,B$, the Cartesian product is given by 
+\begin{align*}
+    A\times B = \{\langle a,b\rangle: a \in A \ \mbox{ and } \ b \in B\}
+\end{align*}
+\marginnote{
+\begin{tikzpicture}[scale=1.0]
+    % Draw the grid
+    \draw[step=0.5cm,gray,very thin] (-2.5,-2.5) grid (2.5,2.5);
+
+    % Draw the axes
+    \draw[thick,->] (-2.5,0) -- (2.5,0) node[right] {$x$};
+    \draw[thick,->] (0,-2.5) -- (0,2.5) node[above] {$f(x)$};
+
+    % Clip the plot to the bounding box
+    \begin{scope}
+        \clip (-2.5,-2.5) rectangle (2.5,2.5);
+        \draw[domain=-2.5:2.5,samples=100,thick] plot (\x, {2*\x});
+    \end{scope}
+
+    % Add the text label inside the box
+    \node[above right] at (1,2.5) {$f(x) = 2x$};
+
+    % Add points at the intersections with the grid
+    \foreach \x in {-1,-0.5,0,0.5,1}
+        \fill[black] (\x, {2*\x}) circle (2pt);
+\end{tikzpicture}
+The function $f(x)=2x$ is constructed from all the ordered pairs $\langle r, 2r \rangle=\{\{r\}, \{r,2r\}\}$ for $r\in \R$.
+}
+This set can be thought of the set containing all the possible combination of ordered pairs of elements from the sets $A,B$. To illustrate this idea, think of the Cartesian plane familiar to you from high school (the so called "$xy$" plane). This plane allows the representation of all the different combinations of ordered pairs or "coordinates" as we called them in high school. Consider, for example, 
+the linear function $f(x)=2x$ as it is seen to your right. While the function lives in the set that is the Cartesian space $\R \times \R$, it only occupies the set of ordered pairs with the form $\langle r, 2r \rangle = \{\{r\}, \{r,2r\}\}$ where $r\in \R$.
+
+\subsection{Relations}
+A relation is a set of ordered pairs $R\subseteq A\times B$. When $A=B$ such that $R\subseteq A\times A$ we simply say that $R$ is a relation on $A$. Despite us not realizing, we're in fact already familiar with some relations. These include, $a=b$ (equality), $a<b$ (less than), $X\subseteq Y$ (subset). These are nothing more than a set of ordered pair - a relation! A relation on $A$ is a subset of $A$; that is, $R \subseteq A\times A$. Ordered pairs in a relations are denoted as $xRy$ or $\langle x,y \rangle \in R$ or "$x$ is related to $y$." \\\\
+Consider the following example. Let $\N= \{0,1,2,\ldots\}$ and define the relation $R$ on the set $\N$ by $\{\langle x,y \rangle\in \N\times \N: (\exists k \in \N)(x=yk)\}$. We see that $\langle 6,3 \rangle \in R$ and $\langle 9,5 \rangle \not\in R$.  
+An important relation we will often refer to is the identity relation on $A$:
+\begin{align*}
+    I_{A} = \{\langle x,y \rangle \in A \times A: x=y \}
+\end{align*}
+For a relation $R \subseteq X \times X$,\footnote{Sometimes you will also see that the repetition of a set in the Cartesian product will be denoted by $X \times X = X^{2}$.} we can also define the domain and range. These can be thought of as the "living space" of the relation, that is, it is the range of all the possible left and right members of the ordered pairs such that:
+\begin{enumerate}
+    \item $\mathrm{dom}(R)= \{x: \exists y(\langle x,y \rangle)\}$ is called \textbf{domain} of $R$. 
+    \item $\mathrm{ran}(R)= \{y: \exists x(\langle x,y \rangle)\}$ is called \textbf{range} of $R$. 
+    \item $\mathrm{fld}(R)= \mathrm{dom}(R) \cup \mathrm{ran}(R)$ is call the \textbf{field} of $R$.
+\end{enumerate}
+To illustrate, consider the following example. Let $R = \{\langle a,b \rangle \in A \times B: (a=bk) \land (a<b)\}$ ($a=bk$ is the same as saying "a divides b"). We observe that the relation is the set of all order pairs which follow the restriction:
+\begin{align*}
+    R = \{\langle 1,4 \rangle, \langle 1,6 \rangle, \langle 1,7 \rangle, \langle 2,4 \rangle, \langle 2,6 \rangle, \langle 3,6 \rangle\}
+\end{align*}
+Now we ask ourselves: which are all the different "$a$-s" and "$b$-s" (that all the different left and right elements)? The answer yields as to find the "living space" of the relation such that $\mathrm{dom}(R)=\{1,2,3\}$ and $\mathrm{ran}(R)=\{4,6,7\}$. Together, they make the field of the relation such that $\mathrm{fld}(R) = \{1,2,3\} \cup \{4,6,7\} = \{1,2,3,4,6,7\}$.
+\\\\
+\begin{enumerate}
+    \item $\emptyset \subseteq A \times B$ 
+    \item $\emptyset \subseteq \emptyset \times B$
+    \item $\emptyset \subseteq A\neq emptyset \times \emptyset$
+    \item $R=A\times B$
+\end{enumerate}
+\subsection{Operations on Relations}
+Let $R$ and $S$ be relations, and let $A,B$ be sets. We define the following operations on the relations:
+\begin{enumerate}
+    \item The set which consists of all reverse ordered pairs of the relation $R$. \\
+    $R^{-1} = \{\langle v,u \rangle: \langle u,v \rangle \in R\}$
+    \item For a set $A$, the restriction of $R$ to $A$ creates a new relation \\
+    $R\upharpoonright A = \{\langle u,v \rangle: \langle u,v \rangle \land u \in A\}$
+    \item The a set $A$, the image of $A$ under $R$ is given by \\
+    $R[A] = \{v: (\exists u \in A)(\langle u,v \rangle \in R)\}$
+    \item For a set $B$, the inverse image of $B$ under $R$ is given by \\
+    $R^{-1}[B] = \{u: (\exists v \in A)(\langle u,v \rangle \in R)\}$
+    \item The composition of the relations $R$ and $S$ result in the relation \\
+    $R \circ S = \{\langle u,v \rangle: \exists t(\langle u,t \rangle \in S \land \langle t,v \rangle \in R)\}$ 
+\end{enumerate}
+
+
+\subsection{Equivalence Relations}
+\label{subsec:equivalence-relations}
+We can characterize relations using the following terms:
+\begin{enumerate}
+ \item $R$ is said to be reflexive if $\forall x\in X, xRx$
+ \item $R$ is said to be symmetric if $xRy \Longleftrightarrow yRx$
+ \item $R$ is said to be transitive if $xRy \wedge yRz \Rightarrow xRz$ 
+ \item $R$ is said to be strongly anti-symmetric if $xRy \Rightarrow \neg yRx$\footnote{Equivalently, $\langle x,y \rangle \in R \Rightarrow \langle y,x \rangle \not\in R$}
+ \item $R$ is said to be weakly anti-symmetric if $xRy \land yRx \Rightarrow x=y$  
+\end{enumerate}
+We now strive to generalize the well familiar equality relation ("$=$"). We lay down the following definition:
+A relation on a set $A$ is an \textbf{equivalence relation} on $A$ if it is reflexive, symmetric, and transitive. Let us consider the some examples. First, let's see that this definition holds for equality as promised. Consider the equality relation on set $X$. Asking ourselves whether the previous definitions we gave above hold for the equality relation we find:
+\begin{enumerate}
+\item $\forall x\in X, xRx$? Indeed, $\forall x\in X, x=x$
+\item $xRy \Longleftrightarrow yRx$? Yes, $(x=y)=(y=x)$ 
+\item $xRy \wedge yRz \Rightarrow xRz$? Of course, $x=y \land y=z \Rightarrow x=z$
+\end{enumerate}
+In general, we call the special relations which are reflexive, symmetric, and transitive the \textbf{equivalence relations} and denote them using the symbol $\sim$ which is read as "tilde". As such, "$x$ is related to $y$" where the relation is the equivalence relation (reflexive, symmetric, and transitive) is denoted as $\langle x,y \rangle \in \; \sim$. Similarly, we can denote "$x$ is not related to $y$" by $\langle x,y \rangle \not\in \sim$ or $x \not\sim y$. As such, a relation is an equivalence relation is it satisfies
+\begin{enumerate}
+ \item $\forall x\in X, x\sim x$ (Reflexivity)
+ \item $x\sim y \Longleftrightarrow y\sim x$ (Symmetry)
+ \item $x\sim y \wedge y\sim z \Rightarrow x\sim z$ (Transitivity)
+\end{enumerate}
+Let $A$ be a set, and let $P = \mathcal{P}(A)\setminus \emptyset$. We say that $P$ is a \textbf{partition} of $A$ if the following conditions are met
+\begin{enumerate}
+    \item $(\forall a\in A)(\exists S\in P: a\in S)$
+    \item $(\forall S,T \in P: S\neq T)(S \cap T = \emptyset)$
+\end{enumerate}
+The partition breaks up the set to disjoint and non-empty subsets. For example, let a set $A$ with non-empty subsets $X,Y,U,V,W$. As such, $P = \mathcal{P}(A)\setminus \emptyset = \{X,Y,U,V,W\}$ is the partition of the set $A$ since $(\forall a \in A)(a\in P)$, and all elements (sets) of the partition $P$ are disjoint. To illustrate, consider the following image:
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+
+% Draw the large box representing the set
+\node at (-0.6, 1) {$A = $};
+\draw[thick] (0, 0) rectangle (5, 2);
+\node at (2.5, 1) {$a \in A$};
+\end{tikzpicture}  
+\hspace{1.0cm}
+\begin{tikzpicture}[scale=0.7]
+
+% Draw the large box representing the set
+\node at (-2, 1) {$P = \mathcal{P}(A)\setminus \emptyset = $};
+\draw[thick] (0, 0) rectangle (5, 2);
+
+% Draw vertical rectangles inside the box representing equivalence classes
+\draw[thick] (0, 0) rectangle (1, 2);
+\draw[thick] (1, 0) rectangle (2, 2);
+\draw[thick] (2, 0) rectangle (3, 2);
+\draw[thick] (3, 0) rectangle (4, 2);
+\draw[thick] (4, 0) rectangle (5, 2);
+
+% Labels for equivalence classes
+\node at (0.5, 1) {$X$};
+\node at (1.5, 1) {$Y$};
+
+\node at (2.5, 1) {$U$};
+
+\node at (3.5, 1) {$V$};
+
+\node at (4.5, 1) {$W$};
+
+\end{tikzpicture}  
+\end{center}
+Similarly to the Venn diagram, we imagine the set $A$ as a rectangle holding all the elements inside the set $A$. The partition on the right breaks up the elements inside $A$ to disjoint subsets $X,Y,U,V,W$ (separated by the lines to show no rectangle shares elements with another). Accordingly, the union of all elements of the partition results in the set $A$ such that $\cup_{_{X\in P}}=A$.\footnote{This makes sense since as illustrated in our drawing, remove the lines of the right figure will result in all the possible elements $a \in A$.}
+\\\\
+We now continue with more important definitions. Let $\sim$ be an equivalence relation on $A$, and let $a
+\in A$. We define the \textbf{equivalence class} of $a$ denoted by $[a]_{\sim}$ as all elements of $A$ which are similar to the element $a$:
+\begin{align*}
+    [a]_{\sim} = \{x\in A: x\sim a\}
+\end{align*}
+For relations, generally, we denote $[a]_{R}$, and sometimes, when it is clear from the context, we may omit the subscript simply write $[a] = \{x\in A: x\sim a\}$. \\\\
+Combining our recently acquired tools, we present the following idea. Let $\sim$ be an equivalence relation on $A$. Then $A\setminus_{\sim}$ denotes the partition $\{[a]_{\sim}: a\in A\}$ of $A$\footnote{By substituting the definition of the equivalence class we get $\{\{x\in A: x\sim a\}: a\in A\}$, and as such, we can read this as "all the elements of the set $A$ which are equivalently related to an element $a$ \textbf{such that} the element $a$ is from the set $A$ - the set itself.} and is called the \textbf{quotient set} induced by $\sim$. This is illustrated by thinking of the following image: 
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+
+% Draw the large box representing the set
+\node at (-0.6, 1) {$A = $};
+\draw[thick] (0, 0) rectangle (6, 2);
+
+% Draw vertical rectangles inside the box representing equivalence classes
+\draw[thick] (0, 0) rectangle (1, 2);
+\draw[thick] (1, 0) rectangle (2, 2);
+\draw[thick] (2, 0) rectangle (3, 2);
+\draw[thick] (3, 0) rectangle (4, 2);
+\draw[thick] (4, 0) rectangle (5, 2);
+\draw[thick] (5, 0) rectangle (6, 2);
+
+% Labels for equivalence classes
+\node at (0.5, 1.7) {$\vdots$};
+\node at (0.5, 1) {$a$};
+\draw[->, thick] (0.5, -0.5) -- (0.5, -0.1);
+\node at (0.5, 0.5) {$\vdots$};
+\node at (0.5, -0.8) {$[a]$};
+
+\node at (1.5, 1.7) {$\vdots$};
+\node at (1.5, 1) {$b$};
+\draw[->, thick] (1.5, -0.5) -- (1.5, -0.1);
+\node at (1.5, 0.5) {$\vdots$};
+\node at (1.5, -0.8) {$[b]$};
+
+\node at (2.5, 1.7) {$\vdots$};
+\node at (2.5, 1) {$c$};
+\draw[->, thick] (2.5, -0.5) -- (2.5, -0.1);
+\node at (2.5, 0.5) {$\vdots$};
+\node at (2.5, -0.8) {$[c]$};
+
+\node at (3.5, 1.7) {$\vdots$};
+\node at (3.5, 1) {$d$};
+\draw[->, thick] (3.5, -0.5) -- (3.5, -0.1);
+\node at (3.5, 0.5) {$\vdots$};
+\node at (3.5, -0.8) {$[d]$};
+
+\node at (4.5, 1.7) {$\vdots$};
+\node at (4.5, 1) {$e$};
+\draw[->, thick] (4.5, -0.5) -- (4.5, -0.1);
+\node at (4.5, 0.5) {$\vdots$};
+\node at (4.5, -0.8) {$[e]$};
+
+\node at (5.5, 1) {$\ldots$};
+\node at (5.5, -0.8) {$\ldots$};
+
+\end{tikzpicture}  
+\end{center}
+Here, the rectangle is the original set $A$ and the relation ($\sim$ in our case) breaks up the set $A$ into disjoint subsets of $A$ (marked by separating lines) according to their equivalence classes.\footnote{That is, according to which element they are similar to, or for which element $\langle x,a \rangle \in \; \sim$. This can be thought of as a special case for the equivalence class where we demand that the element which stand next to the other element in the relation is an element from the set.} As such, each column (disjoint subset of $A$) is comprised of the elements of the equivalent classes. With so many new ideas it is easy to get long. I will now try and make the things more clear with the following example. Consider the equivalence relation $\sim$ on the integer set $\mathbb{Z}$ defined by $m\sim n$ if and only if $(m-n)$ is evenly divisible by $3$; that is, $(m-n) | 3$, or $(m-n)/3=k\in\Z$ and accordingly, $m=3k+n$. We see that the general equivalence is defined by 
+\begin{align}
+    [n] = \{m\in \mathbb{Z}: m\sim n\} = \{3k+n: k\in \Z\}
+\end{align}
+
+[ADD EXCERISE FROM OMER TIRGUL 2 FOR $R_{h}=\{(f,g)\in {{^{\N}}\N} \times {{^{\N}}\N }: h \circ f = h \circ g\}$]
+\subsection{Functions}
+The concept of a function is familiar to us from our high school career. In this chapter we will outline a rigorous definition of this beautiful idea which in high school was most taught as "take an input get an output." As you might have guessed at this point, a function is a relation - it is a set of ordered sets of pairs. Indeed, it is a very special type of relation which was shall discuss in great detail. First we ask, what makes a function different than a relation? We start by laying down some foundations. A function is denoted as $f: X \to Y$ and is read as "The function $f$ from $X$ to $Y$." We say that $X$ the domain and $Y$ the co domain of the function $f$ such that 
+
+We call the relation $R$ a function if and only if the following hold
+\begin{enumerate}
+    \item $\mathrm{dom}(f) = A$ meaning every element of the domain\footnote{Recall the domain of $f$ is defined as $\mathrm{dom}(f)=\{x:\exists y(\langle x,y \trangle)\}$.} of $f$ is can be mapped by $f$ to an element of the co domain, $Y$. 
+    \item $f$ is single rooted; that is, an element of the co domain can not be mapped to two distinct elements of the co domain.
+\end{enumerate}
+To illustrate the second requirement consider the following plot\footnote{This is inspired by how it is presented in Spivak's excellent Calculus.} resulting from drawing all the ordered pair in the relation:
+\begin{center}
+\begin{tikzpicture}
+    % Draw the axes
+    \draw[->] (-0.5,0) -- (3,0) node[right] {$\R$};
+    \draw[->] (0,-2) -- (0,2) node[above] {$\R$};
+    
+    % Draw the parabola
+    \draw[domain=0:2, smooth, variable=\x, black] plot ({\x}, {sqrt(\x)}) node[right] {};
+    \draw[domain=0:2, smooth, variable=\x, black] plot ({\x}, {-sqrt(\x)}) node[right] {};
+
+    \filldraw[black] (1, 1) circle (2pt) node[right] {$(x_{1},y_{1})$};
+    \filldraw[black] (1, -1) circle (2pt) node[right] {$(x_{1},y_{2})$};
+    \node at (1.5, 1.5) {$f: \R \to \R$};
+    
+\end{tikzpicture}
+\end{center} 
+[ADD THE CASE FOR $\{(X^},X): X\in \R^{+}\}$ AND WHY IT IS A FUNCTION]
+We ask, can this be a function? We know it is a relation\footnote{$R= \{\langle x_{1},y_{1} \rangle , \langle x_{2},y_{2} \rangle , \langle x_{3},y_{3}\rangle, \ldots\}$.} since it consist of ordered pair, but does that necessarily mean it is a function? No. Pay attention to the points presented in the plot and see that the "function" plots the point $x_{1}$ to two distinct point. As such, it can not be a function. Formally we can say,
+\begin{enumerate}
+  \item For every $x\in X$ there exists $y\in Y$ such that $( x , y ) \in f$
+  \item $(x,y) \in f$ and $(x,z) \in f \implies x=z$    
+\end{enumerate}
+That is, every element of the domain is mappable (by $f$) and if the point $x$ appears in the ordered relations twice with different elements to its right, they are equal such that $x=y$. It is helpful to visualize the function in the following manner. 
+\begin{center}
+\begin{tikzpicture}[ele/.style={fill=black,circle,minimum width=.8pt,inner sep=1pt},every fit/.style={ellipse,draw,inner sep=-2pt}, scale=0.8]
+% Domain nodes
+\node[ele,label=left:$a$] (a1) at (0,4) {};    
+\node[ele,label=left:$b$] (a2) at (0,3) {};    
+\node[ele,label=left:$c$] (a3) at (0,2) {};
+\node[ele,label=left:$d$] (a4) at (0,1) {};
+
+% Codomain nodes
+\node[ele,label=right:$1$] (b1) at (4,4) {};
+\node[ele,label=right:$2$] (b2) at (4,3) {};
+\node[ele,label=right:$3$] (b3) at (4,2) {};
+\node[ele,label=right:$4$] (b4) at (4,1) {};
+
+% Dots for infinite domain and codomain
+\node at (0,4.7) {$\vdots$};
+\node at (4,4.7) {$\vdots$};
+\node at (0,0.3) {$\vdots$};
+\node at (4,0.3) {$\vdots$};
+
+% Function label
+\node at (2,4) {$f$};
+
+% Domain and Codomain sets
+\node[draw,fit= (a1) (a2) (a3) (a4),minimum width=2cm,inner sep=0.5cm,label=below:$A$] {} ;
+\node[draw,fit= (b1) (b2) (b3) (b4),minimum width=2cm,inner sep=0.5cm,label=below:$B$] {} ;  
+
+% Arrows for the function (not single-rooted)
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (a1) -- (b4) node[midway,above] {};
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (a2) -- (b2) node[midway,above] {};
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (a3) -- (b1) node[midway,above] {};
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (a4) -- (b3) node[midway,above] {};
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (a1) -- (b2); % Example of non-single-rooted mapping
+\end{tikzpicture}
+\end{center}
+Here, the domain and co domain are represented by the nodes and the function is the one which maps elements from $A$ to $B$ (the domain on the left and the co domain on the right).\footnote{In the case presented above, $A=B=\R$} We can see that non-single-rooted relations will have two arrows generating from the left side node (domain) and landing on different elements of the right side node (codomain). In this example, the element $a\in A$ is mapped to two distinct values $2,4 \in B$.\footnote{This is of course not the full view as in the case above the domain and codomain are infinite and we have only presented a subset of the full picture.}\footnote{If we would have drawn the arrow diagram for the plotted relation above, every element of the domain (except zero) would have two arrows coming out of it and pointing on distinct elements of the co domain.} \\\\
+Let sets $A,B$. We denote $^{A}B$ as the set containing all the functions from $A$ to $B$\footnote{Functions whose domain is $A$ and whose co domain is $B$.} such that 
+\begin{align*}
+    ^{A}B = \{f: (\mathrm{dom}{f}=A) \land (\mathrm{codom}{f}=B\})
+\end{align*}\footnote{Equivalently, $^{A}B$ is the set of all function such that "$f$ is a function from $A$ to $B$".} As such, we can simplify all of our high school calculus wisdom to all the wisdom gathered on real functions; that is,
+\begin{align*}
+    ^{\R}\R = \{f: (\mathrm{dom}{f}=\R) \land (\mathrm{codom}{f}=\R\})
+\end{align*}
+
+
+
+\subsection{Operations on Functions}
+\section{Countable sets}
+\subsection{Definition of the natural numbers}
+\subsection{Cardinality Arithmetic}
+
+
+\section{Well-Ordered Sets}
+\subsection{Order Relations}
+Previously, discussing \hyperref[subsec:equivalence-relations]{\underline{equivalence relations}}, we generalized the concept of equality to equality relations. Now, we seek to generalize the ideas of "less than or equal to" and "less than". This is another relation since it is a set of ordered pair. Let us denote this relation as $R_{\leq} = \preccurlyeq$. When reading we ask $(2,3)\in \preccurlyeq$, we are saying is $2$ smaller or equal to $3$? The answer seems to be yes and so the ordered pair is in the relation. On the other hand, $(3,2)\not\in \preccurlyeq$ and, as such, we may conclude that the relation is not symmetric. Moreover, we see that the relation $\leq$ is weakly anti-symmetric since $x\preccurlyeq y \land y\preccurlyeq x \Rightarrow x=y$.\footnote{See definition in equivalence relation chapter to remind yourself of these key definitions.} \\\\
+Let us define the \textbf{partial order} as the relation $\preccurlyeq$ on a set $X$ if $\preccurlyeq$ is:
+\begin{enumerate}
+    \item $\forall x\in X, x \preccurlyeq x$ (It's reflexive) 
+    \item $(x \preccurlyeq y) \land (y \preccurlyeq x) \Rightarrow x=y$ (It's weakly anti-symmetric) 
+    \item $(x \preccurlyeq y) \land (y \preccurlyeq z) \Rightarrow (x \preccurlyeq z)$ (It's transitive)
+\end{enumerate}
+This definition makes sense since 
+\begin{enumerate}
+    \item An element is equal to itself (since it's "less than \textbf{or} equal to")
+    \item If an element is smaller than or equal to another, but the other element is also smaller than or equal to it, then it, then it only leaves the option for them to be equal.
+    \item If an element is smaller than another it will also be smaller than an even larger third element.
+\end{enumerate}
+If $\preccurlyeq$ is the partial ordering on set $A$ then we can denote the structure $(A, \preccurlyeq)$ (where the left element is the set and the right element is the relation) and say that $(A,\preccurlyeq)$ is a \textbf{partially ordered set}.\footnote{Notice that it is $(A,\preccurlyeq)$ (and not $A$) which is partially ordered set. This is because a set itself is only a set, but a set with a relation (denoted $(A,R)$ with $R$ being $\preccurlyeq$ in our case) is what we can test the characteristics listed above on.} \\\\
+To illustrate this idea, consider the following example. Let set $\mathcal{F}$ be a set which contains sets as elements.  seek to determine whether $(\mathcal{F}, \subseteq)$ is a partially ordered set. Let's test for the conditions outlined above:
+\begin{itemize}
+    \item $\forall x\in X, x \subseteq x$? \\ Yes since for an element (set) $F\in \mathcal{F}$ we see $F\subseteq F$.
+    \item $(x \subseteq y) \land (y \subseteq x) \Rightarrow x=y$? \\ Indeed. Let elements $F,G \in \mathcal{F}$. If $(F \subseteq G) \land (G\subseteq F) \Rightarrow G=F$.
+    \item $(x \subseteq y) \land (y \subseteq z) \Rightarrow (x \subseteq z)$? \\ Oui. Let sets $F,G,H$ such that $(F\subseteq G) \land (G \subseteq H)$. Recall the definition of the subset and see that $\forall f\in F \Rightarrow f\in G$ and $\forall g\in G \Rightarrow g\in H$. Since all elements of $F$ are in $G$ and all elements of $G$ are in $H$ we see that all elements of $F$ are also elements of $G$.
+\end{itemize}
+Let $\preccurlyeq$ be a partial order on set $A$. We define the relation to be of \textbf{total order} if for each pair  one is either smaller or equal to the other, or larger or equal to the other such that
+\begin{align*}
+    (\forall x \in A)(\forall y \in A)(x\preccurlyeq y \vee y \preccurlyeq x)
+\end{align*}
+When $(A,\preccurlyeq)$ is of partial order and $\preccurlyeq$ is a total order, we shall say that $(A,\preccurlyeq)$ is \textbf{totally ordered set}.
+\\\\
+Similarly, we can also define only the larger than $R_{<}$ relation. Where $(a,\preccurlyeq)$ and $x\neq y$ we shall denote the relation $\prec$ on $A$ such that $(A,\prec)$ is call a \textbf{strict order} corresponding to $\preccurlyeq$. The strict order follows the following properties: 
+\begin{enumerate}
+    \item $x \prec y \Rightarrow \neg y\prec x$ (It's strongly anti-symmetric)\footnote{Equivalently, $\langle x,y \rangle \in \prec \Rightarrow \langle y,x \rangle \not\in \prec$} 
+    \item $(x \prec y) \land (y \prec z) \Rightarrow (x \prec z)$ (It's transitive)
+\end{enumerate}
+Compare this to the relation $\preccurlyeq$ and see why the other requirements fall for the relation only "larger than."
+
+\subsection{Infimum and Supremum}
+Having laid down the generalized relations for "greater than or equal to" and "greater than," we now proceed to ask the inevitable questions: Is there a largest or smallest element? How can we find it? \\\\
+Let $\preccurlyeq$ be a partial order on $A$. We denoted the element $x\in A$ to be the \textbf{maximal element}, if, and only if, for every other element than $a\in A$, $a\prec x$; that is, every element in $A$ which is not $x$ is smaller than it, or, equivalently, there is no element in $A$ which is larger than than $x$. Similarly, an element in $A$ is called the \textbf{minimal element}, if, and only if, for every other element than $x\in A$, $x \prec a$; that is, every element in $A$ which is not $x$ is larger than it, or, equivalently, there is no element in $A$ which is smaller than than $x$. Let $\preccurlyeq$ be a partial order on $A$. We can express the maximal and minimal element(s)\footnote{As you'll soon see, sometimes, there are more than one maximal or minimal element.} as
+\begin{itemize}
+    \item $b$ is a maximal element $\Longleftrightarrow  (\forall x\in A) b \not\prec x$
+    \item $b    $ is a minimal element $\Longleftrightarrow(\forall x\in A) x \not\prec b$ 
+\end{itemize}
+That is, "there is no element smaller/larger than it." Consider the following examples. Consider the set $\{2,3,4,5,6,7,8,9\}$. Let the partially ordered set $(A,\preccurlyeq)$. We want to find the maximal and minimal elements. To achieve this, we ask "which of the elements of the set has the least and most elements which are larger than it?" Following the definition outlined above, $2$ being the minimal and $9$ being the maximal elements of the set indeed follows the definition - no element is smaller or larger than them. For the same set, we not consider the new partially $(A,|)$. Again, we want to find the maximal and minimal elements. Here, the character $|$ symbolized division without a remainder; that is, if $a|b$, we can express $\frac{a}{b}=k$ where $k\in \Z$.\footnote{$a|b$ is often expressed as "$b$ divides $a$"}\footnote{Convince yourself that this is a partial ordered set.} As such, we ask "which of the elements has the least and most elements which it divides [BAH]
+\\\\
+Let $\preccurlyeq$ be a relation on set $A$. Let $S\subseteq A$, $a,b\in A$
+
+[greates/lowest elements here]
+
+Let $\preccurlyeq$ be a partial order on $A$. We can express the largest and smallest element\footnote{Always single if exists} as
+\begin{itemize}
+    \item $b$ is the largest element $\Longleftrightarrow (\forall x\in A) x \preccurlyeq b \text{ and } b \in A$
+    \item $b$ is the smallest element $\Longleftrightarrow(\forall x\in A) b \preccurlyeq x \text{ and } b \in A$ 
+\end{itemize}
+
+That is "The element which is smaller/larger than all the elements."\footnote{Think about how it is different than our definition of the maximal and minimal elements.} \\\\
+
+Let $\preccurlyeq$ be a partial order on $A$. We can express the lower and upper bounds as
+\begin{itemize}
+    \item $b$ is an upper bound $\Longleftrightarrow (\forall x\in A) x \preccurlyeq b$
+    \item $b$ is a lower bound $\Longleftrightarrow(\forall x\in A) b \preccurlyeq x$ 
+\end{itemize}
+
+
+Let $\preccurlyeq$ be a partial order on set $A$, and let $S\subseteq A$. Let us denote $\overline{B}_{S}, \underline{B}_{S}$ as the upper and lower bound sets of set $S$.
+\begin{itemize}
+    \item If $(\forall b \in \overline{B}_{S}) \; \ell \preccurlyeq b$, then $\ell$ is called the \textbf{supremum}\footnote{Often also called the least upper bound.} for $S$.
+    \item If $(\forall b \in \underline{B}_{S})\; b \preccurlyeq \ell$, then $\ell$ is called the \textbf{infimum}\footnote{Often also called the greatest lower bound.} for $S$.
+\end{itemize}
+Let $(A,|)$ be a partially ordered set, and let $x,y \in A$. $x,y$ are said to be \textbf{comparable} if $x\preccurlyeq y$ or $y \preccurlyeq x$ (or both); otherwise, they are said to be \textbf{incomparable}. As such, even if set $A$ is not total order, it is total order on any subset of $A$ in which two elements are comparable. 
+
+
+\subsection{Chains}
+Let $(A,\preccurlyeq)$, a partially ordered set, and let $C\subseteq A$. We will call set $C$ a \textbf{chain} in set $A$, if for all $x$ and $y$ in $C$, either $x\preccurlyeq y$ or $y \preccurlyeq x$; that is,
+\begin{align*}
+    (\forall x \in A)(\forall y \in A)(x\preccurlyeq y \vee y\preccurlyeq x)
+\end{align*}
+We also see that if $D$ is a subset inside the subset, $D\subseteq C$, $D$ will also be a chain. This is because, already, all of the elements of $D$ satisfy $x\preccurlyeq y$ or $y \preccurlyeq x$ (since $D\subset C$ and $C$ satisfies these conditions). Sometimes, when particularly specified, the chain can be only one of $x\preccurlyeq y$ or $y \preccurlyeq x$. For example, when specifying a chain on $(A, \leq)$.
+
+\subsection{Isomorphism}
+Let $(A, \preccurlyeq)$ and $(B, \preccurlyeq^{*})$ be partially ordered sets. A bijection $f:A\to B$ is called \textbf{isomorphism} from $(A, \preccurlyeq)$ onto $(B, \preccurlyeq^{*})$ if it satisfies \begin{align*}
+    \forall x,y \in A, \; x \preccurlyeq y \Longleftrightarrow f(x)\preccurlyeq^{*} f(y)
+\end{align*}
+Accordingly, $(A, \preccurlyeq)$ and $(B, \preccurlyeq^{*})$ are said to be \textbf{Isomorphic}.
+\begin{center}
+\begin{tikzpicture}[ele/.style={fill=black,circle,minimum width=.4pt,inner sep=1pt},every fit/.style={ellipse,draw,inner sep=-2pt}, scale=0.6]
+% Domain nodes (for f)
+\node[ele,label=left:$a$] (a1) at (0,6) {};    
+\node[ele,label=left:$b$] (a2) at (0,5) {};    
+\node[ele,label=left:$c$] (a3) at (0,4) {};
+\node[ele,label=left:$d$] (a4) at (0,3) {};
+\node[ele,label=left:$e$] (a5) at (0,2) {};
+\node[ele,label=left:$f$] (a6) at (0,1) {};
+
+% Codomain nodes (for f)
+\node[ele,label=right:$1$] (b1) at (4,6) {};
+\node[ele,label=right:$2$] (b2) at (4,5) {};
+\node[ele,label=right:$3$] (b3) at (4,4) {};
+\node[ele,label=right:$4$] (b4) at (4,3) {};
+\node[ele,label=right:$5$] (b5) at (4,2) {};
+\node[ele,label=right:$6$] (b6) at (4,1) {};
+
+% Domain nodes (for f^-1)
+\node[ele,label=left:$1$] (c1) at (8,6) {};    
+\node[ele,label=left:$2$] (c2) at (8,5) {};    
+\node[ele,label=left:$3$] (c3) at (8,4) {};
+\node[ele,label=left:$4$] (c4) at (8,3) {};
+\node[ele,label=left:$5$] (c5) at (8,2) {};
+\node[ele,label=left:$6$] (c6) at (8,1) {};
+
+% Codomain nodes (for f^-1)
+\node[ele,label=right:$a$] (d1) at (12,6) {};
+\node[ele,label=right:$b$] (d2) at (12,5) {};
+\node[ele,label=right:$c$] (d3) at (12,4) {};
+\node[ele,label=right:$d$] (d4) at (12,3) {};
+\node[ele,label=right:$e$] (d5) at (12,2) {};
+\node[ele,label=right:$f$] (d6) at (12,1) {};
+
+% Function label
+\node at (2,6.5) {$f$};
+\node at (10,6.5) {$f^{-1}$};
+
+% Domain and Codomain sets (for f)
+\node[draw,fit= (a1) (a2) (a3) (a4) (a5) (a6),minimum width=2cm,inner sep=0.5cm,label=below:$A$] {} ;
+\node[draw,fit= (b1) (b2) (b3) (b4) (b5) (b6),minimum width=2cm,inner sep=0.5cm,label=below:$B$] {} ;  
+
+% Domain and Codomain sets (for f^-1)
+\node[draw,fit= (c1) (c2) (c3) (c4) (c5) (c6),minimum width=2cm,inner sep=0.5cm,label=below:$B$] {} ;
+\node[draw,fit= (d1) (d2) (d3) (d4) (d5) (d6),minimum width=2cm,inner sep=0.5cm,label=below:$A$] {} ;  
+
+% Arrows for the function f
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (a1) -- (b4);
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (a2) -- (b2);
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (a3) -- (b6);
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (a4) -- (b1);
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (a5) -- (b5);
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (a6) -- (b3);
+
+% Arrows for the function f^-1
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (c1) -- (d4);
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (c2) -- (d2);
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (c3) -- (d6);
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (c4) -- (d1);
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (c5) -- (d5);
+\draw[->,thick,shorten <=2pt,shorten >=2pt] (c6) -- (d3);
+
+\end{tikzpicture}
+\end{center}
+
+\section{Axiom of Choice (AC)}
+The axiom of choice is the most controversial "axiom" among the $\mathrm{ZFC}$ axioms. I noted "axiom" since many there is a good chunk of set theoreticians who choose to work only with the Zermelo-Fraenkel axioms ($\mathrm{ZF}$) because of it's implications which we will not be able to cover in this course.\footnote{For the curious reader, read about Banach-Tarski paradox, for example.} This section will be dedicated to the study of this special axiom.
+
+
+Or, in english,
+\begin{quote}
+    For any set $X$ of nonempty sets, there exists a choice function $f$ that is defined on $X$ and maps each set of $X$ to an element of that set.
+\end{quote}
+
+
+
+
+\subsection{Zorn's Lemma}
+\subsection{Applications of Zorn's Lemma}
+
+\example{
+Let sets $X,Y$. Show that either $|Y|\leq |X|$ or $|X|\leq |Y|$.} 
+Let $\mathcal{F}$ be a set of ordered pairs $(A,f)$ such that $A\subseteq $
+
+\section{Appendix}
+
+\end{document}

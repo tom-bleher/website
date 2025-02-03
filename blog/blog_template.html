@@ -81,7 +81,7 @@
         }
 
         .proof::after {
-            content: "□";
+            content: "■";
             float: right;
             margin-top: -1.5rem;
         }
@@ -199,6 +199,60 @@
         html.latex-dark {
             --hover-color: #0A84FF;
         }
+
+        /* Sidenote styling */
+        .sidenote, .margin-figure {
+            font-size: 0.8rem;
+            line-height: 1.3;
+            margin-right: -25%;
+            width: 20%;
+        }
+
+        /* Numbered sidenote styling */
+        .numbered-sidenote {
+            counter-increment: sidenote-counter;
+            position: relative;
+            display: inline;
+        }
+
+        .sidenote-ref {
+            font-size: 0.7rem;
+            vertical-align: super;
+            color: var(--text-color);
+        }
+
+        .numbered-sidenote .sidenote {
+            display: block;
+            float: right;
+            clear: right;
+            margin-right: -25%;
+            width: 20%;
+            margin-top: 0;
+            margin-bottom: 1em;
+            font-size: 0.8rem;
+            line-height: 1.3;
+            vertical-align: baseline;
+            position: relative;
+        }
+
+        .numbered-sidenote .sidenote::before {
+            content: counter(sidenote-counter) ".";
+            position: relative;
+            vertical-align: baseline;
+            font-size: inherit;
+            margin-right: 0.3em;
+        }
+
+        .margin-figure img {
+            width: 100%;
+            height: auto;
+        }
+
+        .margin-figure figcaption {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            color: var(--secondary-text);
+        }
     </style>
     <!-- MathJax Configuration -->
     <script>
@@ -219,18 +273,8 @@
 <body>
     <main>
         <div class="header-container">
-        </div>
-        
-        <nav class="nav-links">
-            <a href="../../index.html">Home</a>
-            <a href="../../publications.html">Publications</a>
-            <a href="../../projects.html">Projects</a>
-            <a href="../../cv.html">CV</a>
-            <a href="../../teaching.html">Teaching</a>
-            <a href="../../hobbies.html">Hobbies</a>
-            <a href="../../resources.html">Resources</a>
-            <a href="blog.html">Blog</a>
-            <a href="../../contact.html">Contact</a>
+            <h1 class="blog-title">Title of Your Blog Post</h1>
+            <p class="author blog-metadata">January 15, 2024</p>
             <button id="dark-mode-toggle" aria-label="Toggle dark mode">
                 <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="5"/>
@@ -247,19 +291,31 @@
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                 </svg>
             </button>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../../publications.html">Publications</a>
+            <a href="../../projects.html">Projects</a>
+            <a href="../../cv.html">CV</a>
+            <a href="../../teaching.html">Teaching</a>
+            <a href="../../hobbies.html">Hobbies</a>
+            <a href="../../resources.html">Resources</a>
+            <a href="blog.html">Blog</a>
+            <a href="../../contact.html">Contact</a>
         </nav>
 
         <article class="blog-container">
-            <header class="blog-header">
-                <h1 class="blog-title">Title of Your Blog Post</h1>
-                <div class="blog-metadata">January 2024</div>
-            </header>
-
             <p>
                 This is your introduction paragraph. You can include inline math like $e^{i\pi} + 1 = 0$ within the text.
+                Here's a regular sidenote:
                 <aside class="sidenote">
-                    This is a side note using LaTeX.css's native sidenote feature.
+                    This is a regular side note using LaTeX.css's native sidenote feature.
                 </aside>
+            </p>
+
+            <p>
+                And here's how to use a numbered sidenote in your text<span class="numbered-sidenote"><sup class="sidenote-ref">1</sup><span class="sidenote">This is a numbered sidenote that will appear with a corresponding number in the margin.</span></span> which can be referenced again using another number<span class="numbered-sidenote"><sup class="sidenote-ref">2</sup><span class="sidenote">You can have multiple numbered sidenotes in your text.</span></span> as needed.
             </p>
 
             <div class="theorem">
@@ -291,9 +347,6 @@
 
             <p>
                 Continue with more content...
-                <aside class="sidenote">
-                    Another side note with additional information or references.
-                </aside>
             </p>
 
             <div class="lemma">
