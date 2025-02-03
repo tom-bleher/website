@@ -9,8 +9,8 @@
     --tertiary-text: #3C3C434D;     /* Tertiary label color */
     --line-height: 1.6;
     --paragraph-indent: 1.5em;
-    --transition-duration: 0.2s;     /* Slightly faster transition */
-    --transition-timing: cubic-bezier(0.16, 1, 0.3, 1); /* Custom easing for smoother feel */
+    --transition-duration: 0.5s;     /* Increased for smoother transition */
+    --transition-timing: cubic-bezier(0.4, 0, 0.2, 1); /* Material Design easing */
 }
 
 /* Set transition on html to propagate to all children */
@@ -18,7 +18,8 @@ html {
     background-color: var(--bg-color);
     color: var(--text-color);
     min-height: 100vh;
-    transition: all var(--transition-duration) var(--transition-timing);
+    transition: background-color var(--transition-duration) var(--transition-timing),
+                color var(--transition-duration) var(--transition-timing);
 }
 
 /* Ensure body fills viewport */
@@ -32,11 +33,14 @@ body {
     hyphens: auto;
     counter-reset: section;
     background-color: var(--bg-color);
+    transition: background-color var(--transition-duration) var(--transition-timing);
 }
 
 /* Apply transitions to all elements */
 *, *::before, *::after {
-    transition: all var(--transition-duration) var(--transition-timing);
+    transition: background-color var(--transition-duration) var(--transition-timing),
+                color var(--transition-duration) var(--transition-timing),
+                border-color var(--transition-duration) var(--transition-timing);
 }
 
 /* Force immediate background color application */
@@ -108,6 +112,7 @@ p, span, a, li,
     padding: 0.5rem;
     width: 2rem;
     height: 2rem;
+    z-index: 2;
 }
 
 #dark-mode-toggle svg {
@@ -1115,4 +1120,22 @@ a:hover {
 
 .cv-page .awards-list li::before {
     line-height: 0.55;  /* Changed from 0.65 to 0.6 */
+}
+
+/* Add transition overlay */
+.theme-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity var(--transition-duration) var(--transition-timing);
+}
+
+.theme-transition-overlay.active {
+    opacity: 1;
 }
