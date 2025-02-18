@@ -1,0 +1,5 @@
+# Redirect all 404 errors to index.html
+ErrorDocument 404 /index.html
+
+# Redirect 404 errors to custom 404 page
+ErrorDocument 404 /404.html 
