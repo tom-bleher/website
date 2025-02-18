@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /cv.html
+Allow: /blog.html
+Allow: /publications.html
+Allow: /contact.html
+Allow: /blog/*
+
+# Handle 404s
+ErrorDocument 404 /
+
+# Sitemap
+Sitemap: https://tom-bleher.github.io/sitemap.xml 

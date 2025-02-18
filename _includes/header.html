@@ -1,0 +1,14 @@
+<script>
+    // Global error handler
+    window.onerror = function(msg, url, lineNo, columnNo, error) {
+        window.location.href = '/';
+        return false;
+    };
+    
+    // Check if the page exists, if not redirect to home
+    document.addEventListener('DOMContentLoaded', function() {
+        if (document.title === '' || document.body.innerHTML === '') {
+            window.location.href = '/';
+        }
+    });
+</script> 
